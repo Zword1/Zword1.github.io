@@ -16,7 +16,7 @@
         }
 
         header {
-            background-image: url('your-image.jpg'); /* Placeholder for a header image */
+            background-image: url('images/ZePrint3DLogo.png.jpg'); /* Placeholder for a header image */
             background-size: cover;
             background-position: center;
             height: 300px;
