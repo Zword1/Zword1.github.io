@@ -16,7 +16,7 @@
   <main>
     <!-- Banner Section -->
     <section>
-      <img src="images/Envilope.jpg" alt="GivingGrams Banner" id="banner">
+      <img src="images/ZePrint3DLogo.png.jpg" alt="GivingGrams Banner" id="banner">
     </section>
 
     <!-- Main Action Section -->
