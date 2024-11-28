@@ -23,7 +23,7 @@
     <section>
       <button id="start-giving-btn">Start Giving</button>
       <div id="letter-counter">
-        <h3>Letter Counter</h3>
+        <h3>Letters Sent</h3>
         <p id="counter-value">Loading...</p>
       </div>
     </section>
