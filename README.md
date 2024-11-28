@@ -17,33 +17,35 @@
 
         header {
             position: relative;
-            background-image: url('images/ZePrint3DLogo.png.jpg'); /* Replace 'your-image.jpg' with the path to your image */
+            background-image: url('your-image.jpg'); /* Replace with your image URL */
             background-size: cover;
             background-position: center;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            height: 350px;
             color: white;
         }
 
         header h1 {
             position: absolute;
-            top: 20px;
+            top: 10px;
             left: 20px;
-            margin: 0;
             font-size: 1.5rem;
-            text-shadow: 1px 1px 2px black;
+            margin: 0;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
         header p {
             position: absolute;
-            bottom: 20px;
-            margin: 0;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 1.2rem;
+            margin: 0;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 15px;
+            border-radius: 5px;
             font-style: italic;
-            text-shadow: 1px 1px 2px black;
         }
 
         main {
@@ -66,13 +68,29 @@
         }
 
         .letter-counter {
-            margin: 20px 0;
+            margin: 30px 0;
             font-size: 1.5rem;
         }
 
         #payment-container {
             display: none;
             margin-top: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 90%;
+            max-width: 500px;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
         footer {
@@ -94,12 +112,6 @@
             margin-top: 30px;
         }
 
-        #paymentForm label {
-            display: block;
-            margin-bottom: 5px;
-            text-align: left;
-        }
-
         #card-errors {
             color: red;
         }
@@ -107,7 +119,6 @@
 </head>
 
 <body>
-    <!-- Header with image, title, and slogan -->
     <header>
         <h1>GivingGrams.com</h1>
         <p>The Gram that keeps on Giving!</p>
@@ -128,7 +139,7 @@
             <h2>Complete Your Payment</h2>
             <form id="paymentForm">
                 <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required><br><br>
+                <input type="email" id="email" name="email" required>
 
                 <label for="card-element">Payment Details:</label>
                 <div id="card-element"></div> <!-- Stripe Card Element -->
