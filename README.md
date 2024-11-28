@@ -123,11 +123,6 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 GivingGrams.com</p>
-        <p>Spread kindness, one letter at a time.</p>
-    </footer>
-
     <script>
         let letterCount = 0;
 
