@@ -14,10 +14,12 @@
   </header>
   
   <main>
+    <!-- Banner Section -->
     <section>
-      <img src="your-image.jpg" alt="GivingGrams Banner">
+      <img src="your-image.jpg" alt="GivingGrams Banner" id="banner">
     </section>
-    
+
+    <!-- Main Action Section -->
     <section>
       <button id="start-giving-btn">Start Giving</button>
       <div id="letter-counter">
@@ -26,6 +28,7 @@
       </div>
     </section>
 
+    <!-- Form Section -->
     <section id="giving-form" style="display: none;">
       <h3>Send a GivingGram</h3>
       <form id="paymentForm" onsubmit="handleCheckout(event)">
@@ -47,21 +50,25 @@
       </form>
     </section>
 
+    <!-- About Section -->
     <section>
       <h3>About GivingGrams</h3>
       <p>We aim to spread joy through thoughtful letters delivered to your loved ones. Every letter helps support our mission of kindness.</p>
       <p>How it works: Fill out the form, write a message, and we’ll take care of the rest!</p>
     </section>
   </main>
-  
+
   <script>
+    // Initialize Stripe
     const stripe = Stripe('YOUR_PUBLISHABLE_KEY'); // Replace with your Stripe publishable key
     const API_URL = 'https://your-backend-url.com'; // Replace with your backend URL
 
+    // Show the form when "Start Giving" is clicked
     document.getElementById('start-giving-btn').addEventListener('click', () => {
       document.getElementById('giving-form').style.display = 'block';
     });
 
+    // Fetch the letter counter from the backend
     async function fetchLetterCounter() {
       try {
         const response = await fetch(`${API_URL}/api/letter-counter`);
@@ -72,6 +79,7 @@
       }
     }
 
+    // Handle checkout process
     async function handleCheckout(event) {
       event.preventDefault();
 
