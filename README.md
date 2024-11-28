@@ -16,7 +16,7 @@
   <main>
     <!-- Banner Section -->
     <section>
-      <img src="your-image.jpg" alt="GivingGrams Banner" id="banner">
+      <img src="images/assets/Envilope.jpg" alt="GivingGrams Banner" id="banner">
     </section>
 
     <!-- Main Action Section -->
