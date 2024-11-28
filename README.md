@@ -10,7 +10,7 @@
 <body>
   <header>
     <h1>GivingGrams.com</h1>
-    <h2>The Gram that keeps on Giving.</h2>
+    <h2>The Gram that keeps on Giving!</h2>
   </header>
   
   <main>
