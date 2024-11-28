@@ -17,35 +17,33 @@
 
         header {
             position: relative;
-            background-image: url('images/ZePrint3DLogo.png.jpg'); /* Replace with your image URL */
+            background-image: url('your-image.jpg'); /* Replace 'your-image.jpg' with the path to your image */
             background-size: cover;
             background-position: center;
-            height: 350px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             color: white;
         }
 
         header h1 {
-            position: absolute;
-            top: 10px;
+             position: absolute;
+            top: 20px;
             left: 20px;
-            font-size: 1.5rem;
             margin: 0;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
-            border-radius: 5px;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px black;
         }
 
         header p {
             position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.2rem;
+            bottom: 20px;
             margin: 0;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 15px;
-            border-radius: 5px;
+            font-size: 1.2rem;
             font-style: italic;
+            text-shadow: 1px 1px 2px black;
         }
 
         main {
@@ -159,7 +157,6 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 GivingGrams.com</p>
         <p>Spread kindness, one letter at a time.</p>
     </footer>
 
