@@ -1,143 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GivingGrams - The Gram That Keeps on Giving</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            color: #333;
-        }
-
-        header {
-            background-image: url('your-image.jpg'); /* Placeholder for a header image */
-            background-size: cover;
-            background-position: center;
-            height: 300px;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        header p {
-            margin: 0;
-            font-size: 1.2rem;
-            font-style: italic;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        button {
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-top: 20px;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #4cae4c;
-        }
-
-        .letter-counter {
-            margin: 30px 0;
-            font-size: 1.5rem;
-        }
-
-        footer {
-            background: #f1f1f1;
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        footer p {
-            margin: 5px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .info-section {
-            padding: 20px;
-            background-color: #f9f9f9;
-            text-align: left;
-            margin-top: 30px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GivingGrams.com</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
-
 <body>
-    <header>
-        <h1>GivingGrams.com</h1>
-        <p>The Gram that keeps on Giving.</p>
-    </header>
+  <header>
+    <h1>GivingGrams.com</h1>
+    <h2>The Gram that keeps on Giving.</h2>
+  </header>
+  
+  <main>
+    <section>
+      <img src="your-image.jpg" alt="GivingGrams Banner">
+    </section>
+    
+    <section>
+      <button id="start-giving-btn">Start Giving</button>
+      <div id="letter-counter">
+        <h3>Letter Counter</h3>
+        <p id="counter-value">Loading...</p>
+      </div>
+    </section>
 
-    <main>
-        <button onclick="openForm()">Start Giving</button>
+    <section id="giving-form" style="display: none;">
+      <h3>Send a GivingGram</h3>
+      <form id="paymentForm" onsubmit="handleCheckout(event)">
+        <label for="recipient">Recipient's Name:</label>
+        <input type="text" id="recipient" name="recipient" required><br><br>
 
-        <div id="form-container" style="display:none; margin-top:30px;">
-            <h2>Send a GivingGram</h2>
-            <form id="givingForm">
-                <label for="recipient">Recipient's Name:</label><br>
-                <input type="text" id="recipient" name="recipient" required><br><br>
+        <label for="address">Recipient's Address:</label>
+        <input type="text" id="address" name="address" required><br><br>
 
-                <label for="address">Recipient's Address:</label><br>
-                <input type="text" id="address" name="address" required><br><br>
+        <label for="message">Message (optional):</label>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
 
-                <label for="message">Your Message (optional):</label><br>
-                <textarea id="message" name="message" rows="4" cols="50" placeholder="Write your message here..."></textarea><br><br>
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
 
-                <label for="payment">Payment Information:</label><br>
-                <input type="text" id="payment" name="payment" placeholder="Card Number" required><br><br>
+        <div id="card-element"></div><br>
 
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+        <button type="submit">Pay $5.00 and Send</button>
+      </form>
+    </section>
 
-        <div class="letter-counter">
-            <p><strong>Letter Counter</strong></p>
-            <p id="letterCount">0</p>
-        </div>
+    <section>
+      <h3>About GivingGrams</h3>
+      <p>We aim to spread joy through thoughtful letters delivered to your loved ones. Every letter helps support our mission of kindness.</p>
+      <p>How it works: Fill out the form, write a message, and we’ll take care of the rest!</p>
+    </section>
+  </main>
+  
+  <script>
+    const stripe = Stripe('YOUR_PUBLISHABLE_KEY'); // Replace with your Stripe publishable key
+    const API_URL = 'https://your-backend-url.com'; // Replace with your backend URL
 
-        <section class="info-section">
-            <h2>What We Do</h2>
-            <p>GivingGrams is all about spreading positivity. You can send a heartfelt letter to anyone in the world with just a few clicks. 
-                Choose a recipient, add a personal message (if you'd like), and we'll take care of the rest.</p>
-            <p>Our goal is to make the world a better place, one letter at a time. Whether it’s to a friend, family member, or even a stranger, your GivingGram will bring joy and kindness to someone’s day.</p>
-        </section>
-    </main>
+    document.getElementById('start-giving-btn').addEventListener('click', () => {
+      document.getElementById('giving-form').style.display = 'block';
+    });
 
-    <script>
-        let letterCount = 0;
+    async function fetchLetterCounter() {
+      try {
+        const response = await fetch(`${API_URL}/api/letter-counter`);
+        const data = await response.json();
+        document.getElementById('counter-value').innerText = data.count;
+      } catch (error) {
+        console.error('Error fetching letter counter:', error);
+      }
+    }
 
-        function openForm() {
-            document.getElementById('form-container').style.display = 'block';
-        }
+    async function handleCheckout(event) {
+      event.preventDefault();
 
-        document.getElementById('givingForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent form submission
-            alert("Thank you for your GivingGram! Your letter will be delivered soon.");
-            letterCount++;
-            document.getElementById('letterCount').textContent = letterCount;
-            document.getElementById('form-container').style.display = 'none'; // Hide the form
-        });
-    </script>
+      const name = document.getElementById('recipient').value;
+      const address = document.getElementById('address').value;
+      const message = document.getElementById('message').value;
+      const email = document.getElementById('email').value;
+
+      // Create Stripe payment token
+      const { token, error } = await stripe.createToken(document.getElementById('card-element'));
+      if (error) {
+        alert('Payment failed: ' + error.message);
+        return;
+      }
+
+      // Send data to the backend
+      const response = await fetch(`${API_URL}/api/checkout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, address, message, email, stripeToken: token.id, amount: 500 }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        alert('Thank you! Your GivingGram has been sent.');
+        fetchLetterCounter(); // Update the counter
+      } else {
+        alert('Payment failed: ' + result.error);
+      }
+    }
+
+    // Load the initial counter value
+    fetchLetterCounter();
+  </script>
 </body>
-
 </html>
