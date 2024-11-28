@@ -16,26 +16,34 @@
         }
 
         header {
-            background-image: url('images/ZePrint3DLogo.png.jpg'); /* Placeholder for a header image */
+            position: relative;
+            background-image: url('images/ZePrint3DLogo.png.jpg'); /* Replace 'your-image.jpg' with the path to your image */
             background-size: cover;
             background-position: center;
-            height: 300px;
-            color: white;
+            height: 400px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+            color: white;
         }
 
         header h1 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px black;
         }
 
         header p {
+            position: absolute;
+            bottom: 20px;
             margin: 0;
             font-size: 1.2rem;
             font-style: italic;
+            text-shadow: 1px 1px 2px black;
         }
 
         main {
@@ -58,7 +66,7 @@
         }
 
         .letter-counter {
-            margin: 30px 0;
+            margin: 20px 0;
             font-size: 1.5rem;
         }
 
@@ -86,6 +94,12 @@
             margin-top: 30px;
         }
 
+        #paymentForm label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
         #card-errors {
             color: red;
         }
@@ -93,9 +107,10 @@
 </head>
 
 <body>
+    <!-- Header with image, title, and slogan -->
     <header>
         <h1>GivingGrams.com</h1>
-        <p>The Gram that keeps on Giving.</p>
+        <p>The Gram that keeps on Giving!</p>
     </header>
 
     <main>
@@ -112,10 +127,10 @@
         <div id="payment-container">
             <h2>Complete Your Payment</h2>
             <form id="paymentForm">
-                <label for="email">Email Address:</label><br>
+                <label for="email">Email Address:</label>
                 <input type="email" id="email" name="email" required><br><br>
 
-                <label for="card-element">Payment Details:</label><br>
+                <label for="card-element">Payment Details:</label>
                 <div id="card-element"></div> <!-- Stripe Card Element -->
                 <div id="card-errors" role="alert"></div><br>
 
