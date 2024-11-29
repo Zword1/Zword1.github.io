@@ -17,7 +17,7 @@
 
         header {
             position: relative;
-            background-image: url('your-image.jpg'); /* Replace 'your-image.jpg' with the path to your image */
+            background-image: url('images/ZePrint3DLogo.png.jpg'); /* Replace 'your-image.jpg' with the path to your image */
             background-size: cover;
             background-position: center;
             height: 400px;
