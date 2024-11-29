@@ -134,11 +134,20 @@
 
         <!-- Payment Form -->
         <div id="payment-container">
-            <h2>Complete Your Payment</h2>
+            <h2>Complete Your GivingGram</h2>
             <form id="paymentForm">
-                <label for="email">Email Address:</label>
+                <!-- Recipient Information -->
+                <label for="recipientName">Recipient's Name:</label>
+                <input type="text" id="recipientName" name="recipientName" required>
+
+                <label for="recipientAddress">Recipient's Address:</label>
+                <input type="text" id="recipientAddress" name="recipientAddress" required>
+
+                <!-- Email -->
+                <label for="email">Your Email Address:</label>
                 <input type="email" id="email" name="email" required>
 
+                <!-- Payment Information -->
                 <label for="card-element">Payment Details:</label>
                 <div id="card-element"></div> <!-- Stripe Card Element -->
                 <div id="card-errors" role="alert"></div><br>
