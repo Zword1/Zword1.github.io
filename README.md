@@ -143,14 +143,15 @@
                 <label for="recipientAddress">Recipient's Address:</label>
                 <input type="text" id="recipientAddress" name="recipientAddress" required>
 
+                <!-- Email -->
+                <label for="email">Your Email Address:</label>
+                <input type="email" id="email" name="email" required>
+                
                 <!-- Optional Message -->
                 <label for="optionalMessage">Your Personal Message (optional):</label>
                 <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..."></textarea>
 
                 <!-- Payment Information -->
-                <!-- Email -->
-                <label for="email">Your Email Address:</label>
-                <input type="email" id="email" name="email" required>
                 
                 <label for="card-element">Payment Details:</label>
                 <div id="card-element"></div> <!-- Stripe Card Element -->
