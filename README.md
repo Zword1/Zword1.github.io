@@ -96,7 +96,7 @@
     <!-- Light/Dark Mode Toggle -->
     <div class="toggle-container">
         <input type="checkbox" id="theme-toggle" />
-        <label for="theme-toggle">Toggle Light/Dark</label>
+        <label for="theme-toggle">Light/Dark</label>
     </div>
 
     <header>
