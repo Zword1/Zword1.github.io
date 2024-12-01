@@ -7,51 +7,53 @@
     <title>GivingGrams - The Gram That Keeps on Giving</title>
     <script src="https://js.stripe.com/v3/"></script> <!-- Stripe Library -->
     <style>
+        :root {
+            --background-light: #ffffff;
+            --background-dark: #121212;
+            --text-light: #333;
+            --text-dark: #ffffff;
+            --primary-light: #5cb85c;
+            --primary-dark: #4cae4c;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             text-align: center;
-            color: #333;
+            background-color: var(--background-light);
+            color: var(--text-light);
+        }
+
+        header, footer, .info-section {
+            background-color: var(--background-light);
+            color: var(--text-light);
         }
 
         header {
             position: relative;
-            background-image: url('images/ZePrint3DLogo.png.jpg'); /* Replace 'your-image.jpg' with the path to your image */
+            background-image: url('your-image.jpg'); /* Replace with your image URL */
             background-size: cover;
             background-position: center;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            height: 350px;
             color: white;
         }
 
-        header h1 {
-             position: absolute;
-            top: 20px;
-            left: 20px;
-            margin: 0;
-            font-size: 1.5rem;
-            text-shadow: 1px 1px 2px black;
+        .dark-mode {
+            --background-light: #121212;
+            --background-dark: #ffffff;
+            --text-light: #ffffff;
+            --text-dark: #333;
+            --primary-light: #4cae4c;
+            --primary-dark: #5cb85c;
         }
 
-        header p {
-            position: absolute;
-            bottom: 20px;
-            margin: 0;
-            font-size: 1.2rem;
-            font-style: italic;
-            text-shadow: 1px 1px 2px black;
-        }
-
-        main {
-            padding: 20px;
+        header h1, header p {
+            background: rgba(0, 0, 0, 0.5);
         }
 
         button {
-            background-color: #5cb85c;
+            background-color: var(--primary-light);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -62,61 +64,41 @@
         }
 
         button:hover {
-            background-color: #4cae4c;
+            background-color: var(--primary-dark);
         }
 
-        .letter-counter {
-            margin: 30px 0;
-            font-size: 1.5rem;
+        .toggle-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
         }
 
-        #payment-container {
+        .toggle-container input {
             display: none;
-            margin-top: 30px;
         }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+        .toggle-container label {
+            cursor: pointer;
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
         }
 
-        input, textarea {
-            width: 90%;
-            max-width: 500px;
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        footer {
-            background: #f1f1f1;
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        footer p {
-            margin: 5px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .info-section {
-            padding: 20px;
-            background-color: #f9f9f9;
-            text-align: left;
-            margin-top: 30px;
-        }
-
-        #card-errors {
-            color: red;
+        .toggle-container label:hover {
+            background-color: var(--primary-dark);
         }
     </style>
 </head>
 
 <body>
+    <!-- Light/Dark Mode Toggle -->
+    <div class="toggle-container">
+        <input type="checkbox" id="theme-toggle" />
+        <label for="theme-toggle">Toggle Light/Dark</label>
+    </div>
+
     <header>
         <h1>GivingGrams.com</h1>
         <p>The Gram that keeps on Giving!</p>
@@ -125,7 +107,7 @@
     <main>
         <!-- Letter Counter -->
         <div class="letter-counter">
-            <p><strong>Letters Sent</strong></p>
+            <p><strong>Letter Counter</strong></p>
             <p id="letterCount">0</p>
         </div>
 
@@ -146,13 +128,12 @@
                 <!-- Email -->
                 <label for="email">Your Email Address:</label>
                 <input type="email" id="email" name="email" required>
-                
+
                 <!-- Optional Message -->
                 <label for="optionalMessage">Your Personal Message (optional):</label>
                 <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..."></textarea>
 
                 <!-- Payment Information -->
-                
                 <label for="card-element">Payment Details:</label>
                 <div id="card-element"></div> <!-- Stripe Card Element -->
                 <div id="card-errors" role="alert"></div><br>
@@ -171,64 +152,31 @@
     </main>
 
     <footer>
+        <p>&copy; 2024 GivingGrams.com</p>
         <p>Spread kindness, one letter at a time.</p>
     </footer>
 
     <script>
-        const API_BASE = "http://localhost:3000/api"; // Replace with your backend URL
-        let stripe = Stripe("your-publishable-key"); // Replace with your Stripe publishable key
-        let elements = stripe.elements();
-        let card = elements.create('card');
-        card.mount('#card-element');
+        // Light/Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const userPref = localStorage.getItem('theme') || 'light';
 
-        // Fetch the current letter count
-        async function fetchLetterCount() {
-            const response = await fetch(`${API_BASE}/letters/count`);
-            const data = await response.json();
-            document.getElementById('letterCount').textContent = data.count;
+        // Apply saved theme
+        if (userPref === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.checked = true;
         }
 
-        // Open the payment form
-        function openPaymentForm() {
-            document.getElementById('payment-container').style.display = 'block';
-        }
-
-        // Handle payment submission
-        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const email = document.getElementById('email').value;
-
-            // Confirm card payment
-            const { paymentIntent, error } = await stripe.confirmCardPayment("your-client-secret", {
-                payment_method: {
-                    card: card,
-                    billing_details: { email: email },
-                }
-            });
-
-            if (error) {
-                document.getElementById('card-errors').textContent = error.message;
-            } else if (paymentIntent && paymentIntent.status === "succeeded") {
-                // Notify the backend
-                const response = await fetch(`${API_BASE}/letters`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: email }),
-                });
-
-                if (response.ok) {
-                    alert("Thank you for your GivingGram! Your letter will be delivered soon.");
-                    await fetchLetterCount();
-                    document.getElementById('payment-container').style.display = 'none';
-                } else {
-                    alert("Something went wrong while updating the letter count.");
-                }
+        // Toggle theme and save preference
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
             }
         });
-
-        // Initialize counter on page load
-        fetchLetterCount();
     </script>
 </body>
 
