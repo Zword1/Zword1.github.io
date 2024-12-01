@@ -32,7 +32,7 @@
 
         header {
             position: relative;
-            background-image: url('your-image.jpg'); /* Replace with your image URL */
+            background-image: url('images/ZePrint3DLogo.png.jpg'); /* Replace with your image URL */
             background-size: cover;
             background-position: center;
             height: 350px;
