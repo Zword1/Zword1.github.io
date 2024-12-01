@@ -7,27 +7,12 @@
     <title>GivingGrams - The Gram That Keeps on Giving</title>
     <script src="https://js.stripe.com/v3/"></script> <!-- Stripe Library -->
     <style>
-        :root {
-            --background-light: #ffffff;
-            --background-dark: #121212;
-            --text-light: #333;
-            --text-dark: #ffffff;
-            --primary-light: #5cb85c;
-            --primary-dark: #4cae4c;
-        }
-        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             text-align: center;
-            background-color: var(--background-light);
-            color: var(--text-light);
-        }
-         
-         header, footer, .info-section {
-            background-color: var(--background-light);
-            color: var(--text-light);
+            color: #333;
         }
 
         header {
@@ -42,19 +27,9 @@
             flex-direction: column;
             color: white;
         }
-        
-        .dark-mode {
-            --background-light: #121212;
-            --background-dark: #ffffff;
-            --text-light: #ffffff;
-            --text-dark: #333;
-            --primary-light: #4cae4c;
-            --primary-dark: #5cb85c;
-        }
 
         header h1 {
-            background: rgba(0, 0, 0, 0.5);
-            position: absolute;
+             position: absolute;
             top: 20px;
             left: 20px;
             margin: 0;
@@ -63,7 +38,6 @@
         }
 
         header p {
-            background: rgba(0, 0, 0, 0.5);
             position: absolute;
             bottom: 20px;
             margin: 0;
@@ -77,7 +51,6 @@
         }
 
         button {
-            background-color: var(--primary-light);
             background-color: #5cb85c;
             color: white;
             border: none;
@@ -89,7 +62,6 @@
         }
 
         button:hover {
-            background-color: var(--primary-dark);
             background-color: #4cae4c;
         }
 
@@ -141,39 +113,10 @@
         #card-errors {
             color: red;
         }
-
-        .toggle-container {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-        }
-
-        .toggle-container input {
-            display: none;
-        }
-
-        .toggle-container label {
-            cursor: pointer;
-            display: inline-block;
-            background-color: var(--primary-light);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-        }
-
-        .toggle-container label:hover {
-            background-color: var(--primary-dark);
-        }
     </style>
 </head>
 
 <body>
-    <!-- Light/Dark Mode Toggle -->
-    <div class="toggle-container">
-        <input type="checkbox" id="theme-toggle" />
-        <label for="theme-toggle">Toggle Light/Dark</label>
-    </div>
-    
     <header>
         <h1>GivingGrams.com</h1>
         <p>The Gram that keeps on Giving!</p>
@@ -232,26 +175,6 @@
     </footer>
 
     <script>
-        // Light/Dark Mode Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const userPref = localStorage.getItem('theme') || 'light';
-
-        // Apply saved theme
-        if (userPref === 'dark') {
-            document.body.classList.add('dark-mode');
-            themeToggle.checked = true;
-        }
-
-        // Toggle theme and save preference
-        themeToggle.addEventListener('change', () => {
-            if (themeToggle.checked) {
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light');
-        }
-        
         const API_BASE = "http://localhost:3000/api"; // Replace with your backend URL
         let stripe = Stripe("your-publishable-key"); // Replace with your Stripe publishable key
         let elements = stripe.elements();
