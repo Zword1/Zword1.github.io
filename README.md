@@ -153,8 +153,11 @@
 
                 <!-- Payment Information -->
                 <label for="card-element">Payment Details:</label>
-                <div id="card-element"></div> <!-- Stripe Card Element -->
-                <div id="card-errors" role="alert"></div><br>
+                <div id="card-element">
+                </div> 
+                <!-- Stripe Card Element -->
+                <div id="card-errors" role="alert">
+                </div><br>
 
                 <button type="submit">Submit Payment</button>
             </form>
