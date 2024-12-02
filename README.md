@@ -151,13 +151,14 @@
                 <label for="optionalMessage">Your Personal Message (optional):</label>
                 <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..."></textarea>
 
-                <!-- Payment Information -->
-                <label for="card-element">Payment Details:</label>
-                <div id="card-element">
-                </div> 
-                <!-- Stripe Card Element -->
-                <div id="card-errors" role="alert">
-                </div><br>
+                 <!-- Card Details -->
+                <label for="card-number">Card Number:</label>
+                <div id="card-number"></div> <!-- Stripe Card Number Element -->
+
+                <label for="card-expiration">Expiration Date:</label>
+                <div id="card-expiration"></div> <!-- Stripe Card Expiration Date Element -->
+
+                <div id="card-errors" role="alert" style="color: red;"></div>
 
                 <button type="submit">Submit Payment</button>
             </form>
