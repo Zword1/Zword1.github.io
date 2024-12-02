@@ -152,7 +152,6 @@
                 <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..."></textarea>
 
                 <!-- Payment Information -->
-                
                 <label for="card-element">Payment Details:</label>
                 <div id="card-element"></div> <!-- Stripe Card Element -->
                 <div id="card-errors" role="alert"></div><br>
