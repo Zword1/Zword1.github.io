@@ -132,38 +132,33 @@
         <!-- Start Giving Button -->
         <button onclick="openPaymentForm()">Start Giving</button>
 
-       <div id="payment-container">
-    <h2>Complete Your GivingGram</h2>
-    <form id="paymentForm">
-        <!-- Recipient Information -->
-        <label for="recipientName">Recipient's Name:</label>
-        <input type="text" id="recipientName" name="recipientName" required>
+        <!-- Payment Form -->
+        <div id="payment-container">
+            <h2>Complete Your GivingGram</h2>
+            <form id="paymentForm">
+                <!-- Recipient Information -->
+                <label for="recipientName">Recipient's Name:</label>
+                <input type="text" id="recipientName" name="recipientName" required>
 
-        <label for="recipientAddress">Recipient's Address:</label>
-        <input type="text" id="recipientAddress" name="recipientAddress" required>
+                <label for="recipientAddress">Recipient's Address:</label>
+                <input type="text" id="recipientAddress" name="recipientAddress" required>
 
-        <!-- Email -->
-        <label for="email">Your Email Address:</label>
-        <input type="email" id="email" name="email" required>
+                <!-- Email -->
+                <label for="email">Your Email Address:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <!-- Optional Message -->
+                <label for="optionalMessage">Your Personal Message (optional):</label>
+                <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..."></textarea>
 
-        <!-- Optional Message -->
-        <label for="optionalMessage">Your Personal Message (optional):</label>
-        <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..."></textarea>
+                <!-- Payment Information -->
+                <label for="card-element">Payment Details:</label>
+                <div id="card-element"></div> 
+                <!-- Stripe Card Element -->
+                <div id="card-errors" role="alert"></div><br>
 
-        <!-- Payment Information -->
-        <h3>Payment Information</h3>
-        <label for="card-number">Card Number:</label>
-        <div id="card-number"></div> <!-- Stripe Card Number -->
-
-        <label for="card-expiration">Expiration Date:</label>
-        <div id="card-expiration"></div> <!-- Stripe Expiration Date -->
-
-        <div id="card-errors" role="alert" style="color: red; margin-top: 10px;"></div>
-
-        <!-- Submit Button -->
-        <button type="submit">Submit Payment</button>
-    </form>
-</div>
+                <button type="submit">Submit Payment</button>
+            </form>
         </div>
 
         <!-- Info Section -->
