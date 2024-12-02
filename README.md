@@ -153,18 +153,22 @@
                 <p id="wordCountMessage">You can write up to 50 words.</p>
 
 
-                // JavaScript function to enforce word limit
-                function limitWords(textarea, maxWords) {
-                const words = textarea.value.split(/\s+/).filter(word => word.length > 0);
-                const wordCountMessage = document.getElementById("wordCountMessage");
- 
-                if (words.length > maxWords) {
-                textarea.value = words.slice(0, maxWords).join(" ");
-                wordCountMessage.textContent = `Word limit reached: ${maxWords} words maximum.`;
-                wordCountMessage.style.color = "red";
-                } else {
-                wordCountMessage.textContent = `You can write up to ${maxWords - words.length} more words.`;
-                wordCountMessage.style.color = "black";
+                <script>
+                    // JavaScript function to enforce word limit
+                    function limitWords(textarea, maxWords) {
+                        const words = textarea.value.split(/\s+/).filter(word => word.length > 0);
+                        const wordCountMessage = document.getElementById("wordCountMessage");
+
+                    if (words.length > maxWords) {
+                        textarea.value = words.slice(0, maxWords).join(" ");
+                        wordCountMessage.textContent = `Word limit reached: ${maxWords} words maximum.`;
+                        wordCountMessage.style.color = "red";
+                    } else {
+                        wordCountMessage.textContent = `You can write up to ${maxWords - words.length} more words.`;
+                        wordCountMessage.style.color = "black";
+                    }
+                }
+            </script>;
  
                 <!-- Payment Information -->
                 <label for="card-element">Payment Details:</label>
