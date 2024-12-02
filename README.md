@@ -151,14 +151,16 @@
                 <label for="optionalMessage">Your Personal Message (optional):</label>
                 <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..."></textarea>
 
-                <!-- Payment Information -->
+                <!-- Payment Information .1 -->
                 <label for="card-element">Payment Details:</label>
-                <div id="card-element"></div> <!-- Stripe Card Element -->
-                <div id="card-errors" role="alert"></div><br>
 
                 <!-- Email -->
                 <label for="email">Your Email Address:</label>
                 <input type="email" id="email" name="email" required>
+
+                <!-- Payment Information .2 -->
+                <div id="card-element"></div> <!-- Stripe Card Element -->
+                <div id="card-errors" role="alert"></div><br>
 
                 <button type="submit">Submit Payment</button>
             </form>
