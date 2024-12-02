@@ -149,8 +149,23 @@
                 
                 <!-- Optional Message -->
                 <label for="optionalMessage">Your Personal Message (optional):</label>
-                <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..."></textarea>
+                <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..." oninput="limitWords(this, 50)"></textarea>
+                <p id="wordCountMessage">You can write up to 50 words.</p>
 
+
+                // JavaScript function to enforce word limit
+                function limitWords(textarea, maxWords) {
+                const words = textarea.value.split(/\s+/).filter(word => word.length > 0);
+                const wordCountMessage = document.getElementById("wordCountMessage");
+ 
+                if (words.length > maxWords) {
+                textarea.value = words.slice(0, maxWords).join(" ");
+                wordCountMessage.textContent = `Word limit reached: ${maxWords} words maximum.`;
+                wordCountMessage.style.color = "red";
+                } else {
+                wordCountMessage.textContent = `You can write up to ${maxWords - words.length} more words.`;
+                wordCountMessage.style.color = "black";
+ 
                 <!-- Payment Information -->
                 <label for="card-element">Payment Details:</label>
                 <div id="card-element"></div> 
