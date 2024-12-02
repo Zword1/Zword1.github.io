@@ -149,8 +149,8 @@
                 
                 <!-- Optional Message -->
                 <label for="optionalMessage">Your Personal Message (optional):</label>
-                <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..." oninput="limitWords(this, 50, 200)"></textarea>
-                <p id="messageFeedback">You can write up to 50 words and 200 letters.</p>
+                <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..." oninput="limitWords(this, 50, 10)"></textarea>
+                <p id="messageFeedback">You can write up to 50 words and 10 letters.</p>
  
                 <!-- Payment Information -->
                 <label for="card-element">Payment Details:</label>
