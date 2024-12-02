@@ -157,6 +157,10 @@
                 <div id="card-element"></div> <!-- Stripe Card Element -->
                 <div id="card-errors" role="alert"></div><br>
 
+                <!-- Email -->
+                <label for="email">Your Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
                 <button type="submit">Submit Payment</button>
             </form>
         </div>
