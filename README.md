@@ -168,7 +168,7 @@
                         wordCountMessage.style.color = "black";
                     }
                 }
-            </script>;
+            </script>
  
                 <!-- Payment Information -->
                 <label for="card-element">Payment Details:</label>
