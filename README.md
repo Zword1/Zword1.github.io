@@ -17,7 +17,7 @@
 
         header {
             position: relative;
-            background-image: url('images/ZePrint3DLogo.png.jpg'); /* Replace 'your-image.jpg' with the path to your image */
+            background-image: url('images/ZePrint3DLogo.png.jpg'); /* Replace with the path to your image */
             background-size: cover;
             background-position: center;
             height: 400px;
@@ -29,7 +29,7 @@
         }
 
         header h1 {
-             position: absolute;
+            position: absolute;
             top: 20px;
             left: 20px;
             margin: 0;
@@ -149,7 +149,9 @@
                 
                 <!-- Optional Message -->
                 <label for="optionalMessage">Your Personal Message (optional):</label>
-                <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..."></textarea>
+                <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" 
+                          placeholder="Write your message here..." oninput="validateMessage(this, 50, 250)"></textarea>
+                <p id="messageFeedback">You can write up to 50 words and 250 letters.</p>
 
                 <!-- Payment Information -->
                 <label for="card-element">Payment Details:</label>
@@ -183,14 +185,34 @@
 
         // Fetch the current letter count
         async function fetchLetterCount() {
-            const response = await fetch(`${API_BASE}/letters/count`);
-            const data = await response.json();
-            document.getElementById('letterCount').textContent = data.count;
+            try {
+                const response = await fetch(`${API_BASE}/letters/count`);
+                const data = await response.json();
+                document.getElementById('letterCount').textContent = data.count;
+            } catch (err) {
+                console.error("Error fetching letter count:", err);
+            }
         }
 
         // Open the payment form
         function openPaymentForm() {
             document.getElementById('payment-container').style.display = 'block';
+        }
+
+        // Validate word and letter limits in the optional message
+        function validateMessage(textarea, maxWords, maxLetters) {
+            const words = textarea.value.split(/\s+/).filter(word => word.length > 0);
+            const letters = textarea.value.replace(/\s/g, '').length;
+            const feedback = document.getElementById("messageFeedback");
+
+            if (words.length > maxWords || letters > maxLetters) {
+                textarea.value = textarea.value.slice(0, maxLetters).split(/\s+/).slice(0, maxWords).join(" ");
+                feedback.textContent = `Message adjusted: Max ${maxWords} words and ${maxLetters} letters allowed.`;
+                feedback.style.color = "red";
+            } else {
+                feedback.textContent = `You can write up to ${maxWords - words.length} more words and ${maxLetters - letters} more letters.`;
+                feedback.style.color = "black";
+            }
         }
 
         // Handle payment submission
@@ -199,31 +221,38 @@
 
             const email = document.getElementById('email').value;
 
-            // Confirm card payment
-            const { paymentIntent, error } = await stripe.confirmCardPayment("your-client-secret", {
-                payment_method: {
-                    card: card,
-                    billing_details: { email: email },
-                }
-            });
+            try {
+                // Fetch the client secret dynamically
+                const clientSecretResponse = await fetch(`${API_BASE}/payment/intent`, { method: "POST" });
+                const { clientSecret } = await clientSecretResponse.json();
 
-            if (error) {
-                document.getElementById('card-errors').textContent = error.message;
-            } else if (paymentIntent && paymentIntent.status === "succeeded") {
-                // Notify the backend
-                const response = await fetch(`${API_BASE}/letters`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: email }),
+                // Confirm card payment
+                const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: card,
+                        billing_details: { email: email },
+                    }
                 });
 
-                if (response.ok) {
-                    alert("Thank you for your GivingGram! Your letter will be delivered soon.");
-                    await fetchLetterCount();
-                    document.getElementById('payment-container').style.display = 'none';
-                } else {
-                    alert("Something went wrong while updating the letter count.");
+                if (error) {
+                    document.getElementById('card-errors').textContent = error.message;
+                } else if (paymentIntent && paymentIntent.status === "succeeded") {
+                    const response = await fetch(`${API_BASE}/letters`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email: email }),
+                    });
+
+                    if (response.ok) {
+                        alert("Thank you for your GivingGram! Your letter will be delivered soon.");
+                        await fetchLetterCount();
+                        document.getElementById('payment-container').style.display = 'none';
+                    } else {
+                        alert("Something went wrong while updating the letter count.");
+                    }
                 }
+            } catch (err) {
+                alert("An error occurred: " + err.message);
             }
         });
 
