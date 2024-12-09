@@ -149,10 +149,8 @@
                 
                 <!-- Optional Message -->
                 <label for="optionalMessage">Your Personal Message (optional):</label>
-                <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..." 
-                          oninput="limitWords(this, 50, 10)"></textarea>
-                <p id="messageFeedback">You can write up to 50 words and 10 letters.</p>
- 
+                <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" placeholder="Write your message here..."></textarea>
+
                 <!-- Payment Information -->
                 <label for="card-element">Payment Details:</label>
                 <div id="card-element"></div> 
@@ -162,78 +160,6 @@
                 <button type="submit">Submit Payment</button>
             </form>
         </div>
-
-        <script>
-            // Validation for email and recipient address
-            function validateForm() {
-                const email = document.getElementById('email').value;
-                const recipientAddress = document.getElementById('recipientAddress').value;
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation regex
-
-                if (!emailRegex.test(email)) {
-                    alert("Please enter a valid email address.");
-                    return false;
-                }
-
-                if (recipientAddress.trim().length < 5) {
-                    alert("Please enter a valid recipient address.");
-                    return false;
-                }
-
-                return true;
-            }
-
-            // Validate word and letter limits in the optional message
-            function validateMessage(textarea, maxWords, maxLetters) {
-                const words = textarea.value.split(/\s+/).filter(word => word.length > 0);
-                const letters = textarea.value.replace(/\s/g, '').length; // Count letters excluding spaces
-                const feedback = document.getElementById("messageFeedback");
-
-                if (words.length > maxWords || letters > maxLetters) {
-                    textarea.value = textarea.value.slice(0, maxLetters).split(/\s+/).slice(0, maxWords).join(" ");
-                    feedback.textContent = `Message adjusted: Max ${maxWords} words and ${maxLetters} letters allowed.`;
-                    feedback.style.color = "red";
-                } else {
-                    feedback.textContent = `You can write up to ${maxWords - words.length} more words and ${maxLetters - letters} more letters.`;
-                    feedback.style.color = "black";
-                }
-            }
-
-            // Handle form submission with validation
-            document.getElementById('paymentForm').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                if (!validateForm()) return; // Stop submission if validation fails
-
-                const email = document.getElementById('email').value;
-
-                // Confirm card payment
-                const { paymentIntent, error } = await stripe.confirmCardPayment("your-client-secret", {
-                    payment_method: {
-                        card: card,
-                        billing_details: { email: email },
-                    }
-                });
-
-                if (error) {
-                    document.getElementById('card-errors').textContent = error.message;
-                } else if (paymentIntent && paymentIntent.status === "succeeded") {
-                    // Notify the backend
-                    const response = await fetch(`${API_BASE}/letters`, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ email: email }),
-                    });
-
-                    if (response.ok) {
-                        alert("Thank you for your GivingGram! Your letter will be delivered soon.");
-                        await fetchLetterCount();
-                        document.getElementById('payment-container').style.display = 'none';
-                    } else {
-                        alert("Something went wrong while updating the letter count.");
-                    }
-                }
-            }); 
-        </script>
 
         <!-- Info Section -->
         <section class="info-section">
