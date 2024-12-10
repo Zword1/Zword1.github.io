@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,7 @@
         content="default-src 'self'; script-src 'self' https://js.stripe.com; 
                  style-src 'self' 'unsafe-inline'; 
                  img-src 'self' data:; 
-                 connect-src 'self' http://localhost:3000;">
+                 connect-src 'self' https://your-secure-api.com;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
@@ -211,7 +210,7 @@
     </footer>
 
     <script>
-        const API_BASE = "http://localhost:3000/api"; // Replace with your backend URL
+        const API_BASE = "https://your-secure-api.com/api"; // Replace with your production backend URL
         let stripe = Stripe("your-publishable-key"); // Replace with your Stripe publishable key
         let elements = stripe.elements();
         let card = elements.create('card');
@@ -231,12 +230,21 @@
             e.preventDefault();
             const email = document.getElementById('email').value;
 
-            const { paymentIntent, error } = await stripe.confirmCardPayment("your-client-secret", {
+            // Securely fetch the client secret from the server
+            const response = await fetch(`${API_BASE}/create-payment-intent`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email })
+            });
+
+            const { clientSecret } = await response.json();
+
+            const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: { card: card, billing_details: { email: email } }
             });
 
             if (error) {
-                document.getElementById('card-errors').textContent = error.message;
+                document.getElementById('card-errors').textContent = "There was an issue with your payment.";
             } else if (paymentIntent.status === "succeeded") {
                 const response = await fetch(`${API_BASE}/letters`, {
                     method: "POST",
