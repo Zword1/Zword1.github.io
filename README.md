@@ -7,42 +7,17 @@
     <title>GivingGrams - The Gram That Keeps on Giving</title>
     <script src="https://js.stripe.com/v3/"></script> <!-- Stripe Library -->
     <style>
-        :root {
-            /* Light Mode Variables */
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --header-bg: url('images/ZePrint3DLogo.png.jpg');
-            --header-text-color: white;
-            --button-bg: #5cb85c;
-            --button-bg-hover: #4cae4c;
-            --input-bg: #ffffff;
-            --footer-bg: #f1f1f1;
-        }
-
-        [data-theme="dark"] {
-            /* Dark Mode Variables */
-            --bg-color: #1a1a1a;
-            --text-color: #e0e0e0;
-            --header-bg: url('images/ZePrint3DLogo-dark.png'); /* Optional: Add a dark version of the image */
-            --header-text-color: #cccccc;
-            --button-bg: #444444;
-            --button-bg-hover: #555555;
-            --input-bg: #333333;
-            --footer-bg: #2c2c2c;
-        }
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             text-align: center;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            color: #333;
         }
 
         header {
             position: relative;
-            background-image: var(--header-bg);
+            background-image: url('images/ZePrint3DLogo.png.jpg');
             background-size: cover;
             background-position: center;
             height: 400px;
@@ -50,11 +25,33 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            color: var(--header-text-color);
+            color: white;
+        }
+
+        header h1 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            margin: 0;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        header p {
+            position: absolute;
+            bottom: 20px;
+            margin: 0;
+            font-size: 1.2rem;
+            font-style: italic;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        main {
+            padding: 20px;
         }
 
         button {
-            background-color: var(--button-bg);
+            background-color: #5cb85c;
             color: white;
             border: none;
             padding: 15px 30px;
@@ -65,34 +62,56 @@
         }
 
         button:hover {
-            background-color: var(--button-bg-hover);
+            background-color: #4cae4c;
+        }
+
+        .letter-counter {
+            margin: 30px 0;
+            font-size: 1.5rem;
+        }
+
+        #payment-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
         input, textarea {
-            background-color: var(--input-bg);
-            color: var(--text-color);
+            width: 90%;
+            max-width: 500px;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
         footer {
-            background-color: var(--footer-bg);
+            background: #f1f1f1;
+            padding: 20px;
+            margin-top: 30px;
         }
 
-        #theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: transparent;
-            border: 2px solid var(--text-color);
-            color: var(--text-color);
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
+        footer p {
+            margin: 5px;
+            font-size: 0.9rem;
+            color: #666;
         }
 
-        #theme-toggle:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
+        .info-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        #card-errors {
+            color: red;
         }
     </style>
 </head>
@@ -101,12 +120,56 @@
     <header>
         <h1>GivingGrams.com</h1>
         <p>The Gram that keeps on Giving!</p>
-        <!-- Theme Toggle Button -->
-        <button id="theme-toggle">Switch to Dark Mode</button>
     </header>
 
     <main>
-        <!-- Existing content remains unchanged -->
+        <!-- Letter Counter -->
+        <div class="letter-counter">
+            <p><strong>Letters Sent</strong></p>
+            <p id="letterCount">0</p>
+        </div>
+
+        <!-- Start Giving Button -->
+        <button onclick="openPaymentForm()">Start Giving</button>
+
+        <!-- Payment Form -->
+        <div id="payment-container">
+            <h2>Complete Your GivingGram</h2>
+            <form id="paymentForm">
+                <!-- Recipient Information -->
+                <label for="recipientName">Recipient's Name:</label>
+                <input type="text" id="recipientName" name="recipientName" required>
+
+                <label for="recipientAddress">Recipient's Address:</label>
+                <input type="text" id="recipientAddress" name="recipientAddress" required>
+
+                <!-- Email -->
+                <label for="email">Your Email Address:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <!-- Optional Message -->
+                <label for="optionalMessage">Your Personal Message (optional):</label>
+                <textarea id="optionalMessage" name="optionalMessage" rows="4" cols="50" 
+                          placeholder="Write your message here..."
+                          oninput="validateMessage(this, 50, 250)"></textarea>
+                <p id="messageFeedback">You can write up to 50 words and 250 letters.</p>
+
+                <!-- Payment Information -->
+                <label for="card-element">Payment Details:</label>
+                <div id="card-element"></div> 
+                <div id="card-errors" role="alert"></div><br>
+
+                <button type="submit">Submit Payment</button>
+            </form>
+        </div>
+
+        <!-- Info Section -->
+        <section class="info-section">
+            <h2>What We Do</h2>
+            <p>GivingGrams is all about spreading positivity. You can send a heartfelt letter to anyone in the world with just a few clicks. 
+                Choose a recipient, add a personal message (if you'd like), and we'll take care of the rest.</p>
+            <p>Our goal is to make the world a better place, one letter at a time. Whether it’s to a friend, family member, or even a stranger, your GivingGram will bring joy and kindness to someone’s day.</p>
+        </section>
     </main>
 
     <footer>
@@ -114,19 +177,88 @@
     </footer>
 
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', currentTheme);
+        const API_BASE = "http://localhost:3000/api"; // Replace with your backend URL
+        let stripe = Stripe("your-publishable-key"); // Replace with your Stripe publishable key
+        let elements = stripe.elements();
+        let card = elements.create('card');
+        card.mount('#card-element');
 
-        // Update button text based on the current theme
-        themeToggle.textContent = currentTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+        // Fetch the current letter count
+        async function fetchLetterCount() {
+            const response = await fetch(`${API_BASE}/letters/count`);
+            const data = await response.json();
+            document.getElementById('letterCount').textContent = data.count;
+        }
 
-        themeToggle.addEventListener('click', () => {
-            const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme); // Save theme preference
-            themeToggle.textContent = newTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+        // Open the payment form
+        function openPaymentForm() {
+            document.getElementById('payment-container').style.display = 'block';
+        }
+
+        // Handle payment submission
+        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+
+            // Confirm card payment
+            const { paymentIntent, error } = await stripe.confirmCardPayment("your-client-secret", {
+                payment_method: {
+                    card: card,
+                    billing_details: { email: email },
+                }
+            });
+
+            if (error) {
+                document.getElementById('card-errors').textContent = error.message;
+            } else if (paymentIntent && paymentIntent.status === "succeeded") {
+                // Notify the backend
+                const response = await fetch(`${API_BASE}/letters`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: email }),
+                });
+
+                if (response.ok) {
+                    alert("Thank you for your GivingGram! Your letter will be delivered soon.");
+                    await fetchLetterCount();
+                    document.getElementById('payment-container').style.display = 'none';
+                } else {
+                    alert("Something went wrong while updating the letter count.");
+                }
+            }
         });
+
+        // Validate word and letter limits in the optional message
+        function validateMessage(textarea, maxWords, maxLetters) {
+            const words = textarea.value.split(/\s+/).filter(word => word.length > 0);
+            const letters = textarea.value.replace(/\s/g, '').length;
+            const feedback = document.getElementById("messageFeedback");
+
+            if (words.length >= maxWords || letters >= maxLetters) {
+                feedback.textContent = `Maximum reached: ${maxWords} words and ${maxLetters} letters allowed.`;
+                feedback.style.color = "red";
+
+                textarea.addEventListener('keydown', (e) => {
+                    const currentWords = textarea.value.split(/\s+/).filter(word => word.length > 0);
+                    const currentLetters = textarea.value.replace(/\s/g, '').length;
+
+                    if (currentWords.length >= maxWords && e.key !== "Backspace" && e.key !== "Delete") {
+                        e.preventDefault(); // Prevent adding new words
+                    }
+
+                    if (currentLetters >= maxLetters && e.key !== "Backspace" && e.key !== "Delete") {
+                        e.preventDefault(); // Prevent adding new letters
+                    }
+                });
+            } else {
+                feedback.textContent = `You can write up to ${maxWords - words.length} more words and ${maxLetters - letters} more letters.`;
+                feedback.style.color = "black";
+            }
+        }
+
+        // Initialize counter on page load
+        fetchLetterCount();
     </script>
 </body>
 
