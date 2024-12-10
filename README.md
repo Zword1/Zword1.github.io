@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GivingGrams - The Gram That Keeps on Giving</title>
+    <script src="https://js.stripe.com/v3/"></script> <!-- Stripe Library -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" 
         content="default-src 'self'; script-src 'self' https://js.stripe.com; 
                  style-src 'self' 'unsafe-inline'; 
                  img-src 'self' data:; 
-                 connect-src 'self' https://api.givinggrams.com;">
+                 connect-src 'self' http://localhost:3000;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-    <script src="https://js.stripe.com/v3/"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         /* General Styles */
         body {
@@ -27,65 +27,68 @@
         }
 
         header {
-            background: linear-gradient(135deg, #58d68d, #2ecc71);
+            position: relative;
+            background-image: url('images/ZePrint3DLogo.png.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             color: white;
-            padding: 40px 20px;
         }
 
         header h1 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
             margin: 0;
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px black;
         }
 
         header p {
-            margin-top: 10px;
+            position: absolute;
+            bottom: 20px;
+            margin: 0;
             font-size: 1.2rem;
-            font-weight: 300;
+            font-style: italic;
+            text-shadow: 1px 1px 2px black;
         }
 
         main {
             padding: 20px;
         }
 
-        /* Letter Counter */
-        .letter-counter {
-            margin: 40px 0;
-        }
-
-        .letter-counter p {
-            margin: 5px 0;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        #letterCount {
-            font-size: 2.5rem;
-            color: #2ecc71;
-        }
-
-        /* Button */
+        /* Button Styles */
         button {
-            background: #58d68d;
+            background-color: #58d68d;
             color: white;
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
             cursor: pointer;
+            margin-top: 20px;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s, background-color 0.3s;
         }
 
         button:hover {
-            background: #2ecc71;
+            background-color: #4cae4c;
             transform: translateY(-3px);
         }
 
-        /* Payment Form */
+        /* Letter Counter */
+        .letter-counter {
+            margin: 30px 0;
+            font-size: 1.5rem;
+        }
+
         #payment-container {
             display: none;
+            margin-top: 30px;
             background: white;
             padding: 30px;
             margin: 30px auto;
@@ -97,18 +100,19 @@
 
         label {
             display: block;
-            margin: 10px 0 5px;
+            margin-bottom: 5px;
             font-weight: bold;
             color: #333;
         }
 
         input, textarea {
-            width: 100%;
+            width: 90%;
+            max-width: 500px;
+            margin-bottom: 15px;
             padding: 10px;
             font-size: 1rem;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-bottom: 15px;
         }
 
         input:focus, textarea:focus {
@@ -124,27 +128,13 @@
 
         /* Info Section */
         .info-section {
-            background: #f9f9f9;
-            padding: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: left;
             margin-top: 30px;
             border-radius: 10px;
-            text-align: left;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .info-section h2 {
-            color: #2ecc71;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .info-section p {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        /* Footer */
         footer {
             background: #333;
             color: white;
@@ -153,8 +143,9 @@
         }
 
         footer p {
-            margin: 5px 0;
+            margin: 5px;
             font-size: 0.9rem;
+            color: #fff;
         }
     </style>
 </head>
@@ -162,7 +153,7 @@
 <body>
     <header>
         <h1>GivingGrams.com</h1>
-        <p>The Gram that Keeps on Giving</p>
+        <p>The Gram that keeps on Giving!</p>
     </header>
 
     <main>
@@ -179,18 +170,25 @@
         <div id="payment-container">
             <h2>Complete Your GivingGram</h2>
             <form id="paymentForm">
+                <!-- Recipient Information -->
                 <label for="recipientName">Recipient's Name:</label>
                 <input type="text" id="recipientName" name="recipientName" required>
 
                 <label for="recipientAddress">Recipient's Address:</label>
                 <input type="text" id="recipientAddress" name="recipientAddress" required>
 
+                <!-- Email -->
                 <label for="email">Your Email Address:</label>
                 <input type="email" id="email" name="email" required>
-
+                
+                <!-- Optional Message -->
                 <label for="optionalMessage">Your Personal Message (optional):</label>
-                <textarea id="optionalMessage" name="optionalMessage" rows="4" placeholder="Write your message here..."></textarea>
+                <textarea id="optionalMessage" name="optionalMessage" rows="4" 
+                          placeholder="Write your message here..."
+                          oninput="validateMessage(this, 50, 250)"></textarea>
+                <p id="messageFeedback">You can write up to 50 words and 250 letters.</p>
 
+                <!-- Payment Information -->
                 <label for="card-element">Payment Details:</label>
                 <div id="card-element"></div> 
                 <div id="card-errors" role="alert"></div><br>
@@ -202,8 +200,9 @@
         <!-- Info Section -->
         <section class="info-section">
             <h2>What We Do</h2>
-            <p>GivingGrams is all about spreading positivity. You can send a heartfelt letter to anyone in the world with just a few clicks.</p>
-            <p>Choose a recipient, add a personal message (if you'd like), and we'll take care of the rest. Make someone's day brighter today!</p>
+            <p>GivingGrams is all about spreading positivity. You can send a heartfelt letter to anyone in the world with just a few clicks. 
+                Choose a recipient, add a personal message (if you'd like), and we'll take care of the rest.</p>
+            <p>Our goal is to make the world a better place, one letter at a time. Whether it’s to a friend, family member, or even a stranger, your GivingGram will bring joy and kindness to someone’s day.</p>
         </section>
     </main>
 
@@ -212,7 +211,67 @@
     </footer>
 
     <script>
-        // Script functionality remains unchanged
+        const API_BASE = "http://localhost:3000/api"; // Replace with your backend URL
+        let stripe = Stripe("your-publishable-key"); // Replace with your Stripe publishable key
+        let elements = stripe.elements();
+        let card = elements.create('card');
+        card.mount('#card-element');
+
+        async function fetchLetterCount() {
+            const response = await fetch(`${API_BASE}/letters/count`);
+            const data = await response.json();
+            document.getElementById('letterCount').textContent = data.count;
+        }
+
+        function openPaymentForm() {
+            document.getElementById('payment-container').style.display = 'block';
+        }
+
+        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+
+            const { paymentIntent, error } = await stripe.confirmCardPayment("your-client-secret", {
+                payment_method: { card: card, billing_details: { email: email } }
+            });
+
+            if (error) {
+                document.getElementById('card-errors').textContent = error.message;
+            } else if (paymentIntent.status === "succeeded") {
+                const response = await fetch(`${API_BASE}/letters`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: email }),
+                });
+
+                if (response.ok) {
+                    alert("Thank you for your GivingGram! Your letter will be delivered soon.");
+                    fetchLetterCount();
+                    document.getElementById('payment-container').style.display = 'none';
+                }
+            }
+        });
+
+        function validateMessage(textarea, maxWords, maxLetters) {
+            const words = textarea.value.split(/\s+/).filter(w => w.length > 0);
+            const letters = textarea.value.replace(/\s/g, '').length;
+            const feedback = document.getElementById("messageFeedback");
+
+            if (words.length > maxWords || letters > maxLetters) {
+                feedback.textContent = `Maximum reached: ${maxWords} words, ${maxLetters} letters allowed.`;
+                feedback.style.color = "red";
+                textarea.addEventListener('keydown', (e) => {
+                    if ((words.length >= maxWords && e.key !== "Backspace") || (letters >= maxLetters && e.key !== "Backspace")) {
+                        e.preventDefault();
+                    }
+                });
+            } else {
+                feedback.textContent = `${maxWords - words.length} words, ${maxLetters - letters} letters left.`;
+                feedback.style.color = "black";
+            }
+        }
+
+        fetchLetterCount();
     </script>
 </body>
 </html>
