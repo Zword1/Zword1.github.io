@@ -30,7 +30,7 @@
             background-image: url('images/GivingGramWebsitePicture.JPG');
             background-size: cover;
             background-position: center;
-            height: 400px;
+            height: 4032px;
             display: flex;
             justify-content: center;
             align-items: center;
