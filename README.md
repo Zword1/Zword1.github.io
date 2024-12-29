@@ -31,7 +31,7 @@
             background-position: center;
             width: 100%; /* Responsive width */
             max-width: 1200px;
-            height: 400px; /* Explicit height control */
+            height: 500px; /* Explicit height control */
             margin: 0 auto;
             display: flex;
             justify-content: center;
