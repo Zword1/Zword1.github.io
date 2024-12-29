@@ -27,7 +27,7 @@
 
         header {
             position: relative;
-            background-image: url('images/GivingGramWebsitePicture.jpg');
+            background-image: url('images/GivingGramWebsitePicture.JPG');
             background-size: cover;
             background-position: center;
             height: 400px;
