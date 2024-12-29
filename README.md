@@ -15,6 +15,7 @@
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
     <style>
+        /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -26,13 +27,10 @@
 
         header {
             position: relative;
-            background-image: url('images/GivingGramWebsitePicture.JPG');
-            background-size: 100% 100%; /* Ensure the background image covers the header dimensions */
+            background-image: url('images/ZePrint3DLogo.png.jpg');
+            background-size: cover;
             background-position: center;
-            width: 100%; /* Responsive width */
-            max-width: 1200px;
-            height: 500px; /* Explicit height control */
-            margin: 0 auto;
+            height: 400px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -62,6 +60,7 @@
             padding: 20px;
         }
 
+        /* Button Styles */
         button {
             background-color: #58d68d;
             color: white;
@@ -78,6 +77,12 @@
         button:hover {
             background-color: #4cae4c;
             transform: translateY(-3px);
+        }
+
+        /* Letter Counter */
+        .letter-counter {
+            margin: 30px 0;
+            font-size: 1.5rem;
         }
 
         #payment-container {
@@ -119,31 +124,162 @@
             color: red;
             margin-top: 10px;
         }
+
+        /* Info Section */
+        .info-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: left;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 5px;
+            font-size: 0.9rem;
+            color: #fff;
+        }
     </style>
 </head>
+
 <body>
     <header>
         <h1>GivingGrams.com</h1>
         <p>The Gram that keeps on Giving!</p>
     </header>
+
     <main>
+        <!-- Letter Counter -->
         <div class="letter-counter">
             <p><strong>Letters Sent</strong></p>
             <p id="letterCount">0</p>
         </div>
+
+        <!-- Start Giving Button -->
         <button onclick="openPaymentForm()">Start Giving</button>
+
+        <!-- Payment Form -->
         <div id="payment-container">
             <h2>Complete Your GivingGram</h2>
             <form id="paymentForm">
+                <!-- Recipient Information -->
                 <label for="recipientName">Recipient's Name:</label>
                 <input type="text" id="recipientName" name="recipientName" required>
+
+                <label for="recipientAddress">Recipient's Address:</label>
+                <input type="text" id="recipientAddress" name="recipientAddress" required>
+
+                <!-- Email -->
                 <label for="email">Your Email Address:</label>
                 <input type="email" id="email" name="email" required>
-                <div id="card-element"></div>
+                
+                <!-- Optional Message -->
+                <label for="optionalMessage">Your Personal Message (optional):</label>
+                <textarea id="optionalMessage" name="optionalMessage" rows="4" 
+                          placeholder="Write your message here..."
+                          oninput="validateMessage(this, 50, 250)"></textarea>
+                <p id="messageFeedback">You can write up to 50 words and 250 letters.</p>
+
+                <!-- Payment Information -->
+                <label for="card-element">Payment Details:</label>
+                <div id="card-element"></div> 
                 <div id="card-errors" role="alert"></div><br>
+
                 <button type="submit">Submit Payment</button>
             </form>
         </div>
+
+        <!-- Info Section -->
+        <section class="info-section">
+            <h2>What We Do</h2>
+            <p>GivingGrams is all about spreading positivity. You can send a heartfelt letter to anyone in the world with just a few clicks. 
+                Choose a recipient, add a personal message (if you'd like), and we'll take care of the rest.</p>
+            <p>Our goal is to make the world a better place, one letter at a time. Whether it’s to a friend, family member, or even a stranger, your GivingGram will bring joy and kindness to someone’s day.</p>
+        </section>
     </main>
+
+    <footer>
+        <p>Spread kindness, one letter at a time.</p>
+    </footer>
+
+    <script>
+        const API_BASE = "https://your-secure-api.com/api"; // Replace with your production backend URL
+        let stripe = Stripe("your-publishable-key"); // Replace with your Stripe publishable key
+        let elements = stripe.elements();
+        let card = elements.create('card');
+        card.mount('#card-element');
+
+        async function fetchLetterCount() {
+            const response = await fetch(`${API_BASE}/letters/count`);
+            const data = await response.json();
+            document.getElementById('letterCount').textContent = data.count;
+        }
+
+        function openPaymentForm() {
+            document.getElementById('payment-container').style.display = 'block';
+        }
+
+        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+
+            // Securely fetch the client secret from the server
+            const response = await fetch(`${API_BASE}/create-payment-intent`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email })
+            });
+
+            const { clientSecret } = await response.json();
+
+            const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: { card: card, billing_details: { email: email } }
+            });
+
+            if (error) {
+                document.getElementById('card-errors').textContent = "There was an issue with your payment.";
+            } else if (paymentIntent.status === "succeeded") {
+                const response = await fetch(`${API_BASE}/letters`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: email }),
+                });
+
+                if (response.ok) {
+                    alert("Thank you for your GivingGram! Your letter will be delivered soon.");
+                    fetchLetterCount();
+                    document.getElementById('payment-container').style.display = 'none';
+                }
+            }
+        });
+
+        function validateMessage(textarea, maxWords, maxLetters) {
+            const words = textarea.value.split(/\s+/).filter(w => w.length > 0);
+            const letters = textarea.value.replace(/\s/g, '').length;
+            const feedback = document.getElementById("messageFeedback");
+
+            if (words.length > maxWords || letters > maxLetters) {
+                feedback.textContent = `Maximum reached: ${maxWords} words, ${maxLetters} letters allowed.`;
+                feedback.style.color = "red";
+                textarea.addEventListener('keydown', (e) => {
+                    if ((words.length >= maxWords && e.key !== "Backspace") || (letters >= maxLetters && e.key !== "Backspace")) {
+                        e.preventDefault();
+                    }
+                });
+            } else {
+                feedback.textContent = `${maxWords - words.length} words, ${maxLetters - letters} letters left.`;
+                feedback.style.color = "black";
+            }
+        }
+
+        fetchLetterCount();
+    </script>
 </body>
 </html>
