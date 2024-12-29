@@ -26,7 +26,7 @@
 
         header {
             position: relative;
-            background-image: url('images/ZePrint3DLogo.png.jpg');
+            background-image: url('images/GvingGramWebsitePicture.JPG');
             background-size: 100% 100%; /* Ensure the background image covers the header dimensions */
             background-position: center;
             width: 100%; /* Responsive width */
