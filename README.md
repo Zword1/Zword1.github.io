@@ -26,11 +26,14 @@
         }
 
         header {
-            position: relative;
-            background-image: url('images/GivingGramWebsitePicture.JPG');
-            background-size: cover;
+           position: relative;
+            background-image: url('images/ZePrint3DLogo.png.jpg');
+            background-size: 100% 100%; /* Ensure the background image covers the header dimensions */
             background-position: center;
-            height: 600px;
+            width: 150%; /* Responsive width */
+            max-width: 1200px;
+            height: 600px; /* Explicit height control */
+            margin: 0 auto;
             display: flex;
             justify-content: center;
             align-items: center;
