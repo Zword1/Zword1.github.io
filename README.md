@@ -36,8 +36,8 @@
             align-items: center;
             flex-direction: column;
             color: white;
-            margin: 0; /* Ensures no unexpected spacing */
-            padding: 0; /* Ensures no unexpected padding */
+            margin: -100; /* Ensures no unexpected spacing */
+            padding: -100; /* Ensures no unexpected padding */
             box-sizing: border-box; /* Prevents unwanted width calculation issues */
         }
 
