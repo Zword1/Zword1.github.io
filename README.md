@@ -23,6 +23,7 @@
             text-align: center;
             color: #333;
             background: linear-gradient(135deg, #e8f6ef, #a9dfbf);
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         header {
@@ -150,6 +151,12 @@
             font-size: 0.9rem;
             color: #fff;
         }
+
+        @media (max-width: 768px) {
+        header {
+            height: 250px; /* Adjust height for smaller screens */
+        }
+        
     </style>
 </head>
 
