@@ -18,8 +18,6 @@
         /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
             text-align: center;
             color: #333;
             background: linear-gradient(135deg, #e8f6ef, #a9dfbf);
@@ -29,7 +27,7 @@
             position: relative;
             background-image: url('images/GivingGramWebsitePicture.JPG');
             background-size: cover;
-            background-position: right;
+            background-position: center;
             height: 400px;
             width: 100vw;
             display: flex;
@@ -153,7 +151,7 @@
 <body>
     <header>
         <h1>GivingGrams</h1>
-        <p>The Gram that keeps on Giving!</p>
+        <p>The Gram that keeps on Giving</p>
     </header>
 
     <main>
