@@ -23,12 +23,11 @@
             text-align: center;
             color: #333;
             background: linear-gradient(135deg, #e8f6ef, #a9dfbf);
-            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         header {
-           position: relative;
-        background-image: url('images/GivingGramWebsitePicture.JPG');
+             position: relative;
+        background-image: url('images/ZePrint3DLogo.png.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat; /* Ensures no tiling */
@@ -60,10 +59,6 @@
             font-style: italic;
             text-shadow: 1px 1px 2px black;
         }
-        
-        @media (max-width: 768px) {
-        header {
-            height: 250px; /* Adjust height for smaller screens */
 
         main {
             padding: 20px;
