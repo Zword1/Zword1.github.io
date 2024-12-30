@@ -27,12 +27,12 @@
 
         header {
              position: relative;
-        background-image: url('images/ZePrint3DLogo.png.jpg');
+        background-image: url('images/GivingGramWebsitePicture.JPG');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat; /* Ensures no tiling */
         height: 400px;
-        width: 100vw; /* Full width of the viewport */
+        width: 300vw; /* Full width of the viewport */
         display: flex;
         justify-content: center;
         align-items: center;
