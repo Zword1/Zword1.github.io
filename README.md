@@ -18,6 +18,8 @@
         /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
             text-align: center;
             color: #333;
             background: linear-gradient(135deg, #e8f6ef, #a9dfbf);
@@ -25,16 +27,15 @@
 
         header {
             position: relative;
-            background-image: url('images/GivingGramWebsitePicture.JPG');
-            background-size: cover; /* Ensures the image covers the entire area */
-            background-position: center; /* Centers the image both horizontally and vertically */
-            background-repeat: no-repeat; /* Prevents repetition of the image */
-            width: 100vw; /* Makes sure the header spans the full viewport width */
-            height: 400px; /* Keeps the desired height of the header */
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box; /* Prevents unwanted width calculations */
-            overflow: hidden; /* Ensures no parts of the image overflow */
+            background-image: url('images/ZePrint3DLogo.png.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
         }
 
         header h1 {
@@ -150,8 +151,8 @@
 
 <body>
     <header>
-        <h1>GivingGrams</h1>
-        <p>The Gram that keeps on Giving</p>
+        <h1>GivingGrams.com</h1>
+        <p>The Gram that keeps on Giving!</p>
     </header>
 
     <main>
