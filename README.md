@@ -29,9 +29,9 @@
             position: relative;
             background-image: url('images/GivingGramWebsitePicture.JPG');
             background-size: cover;
-            background-position: center;
+            background-position: left;
             height: 400px;
-            width: -100vw;
+            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
