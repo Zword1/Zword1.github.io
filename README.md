@@ -28,13 +28,17 @@
             background-image: url('images/GivingGramWebsitePicture.JPG');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
             height: 400px;
-            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             color: white;
+            margin: 0; /* Ensures no unexpected spacing */
+            padding: 0; /* Ensures no unexpected padding */
+            box-sizing: border-box; /* Prevents unwanted width calculation issues */
         }
 
         header h1 {
