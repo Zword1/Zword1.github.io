@@ -26,10 +26,10 @@
         header {
             position: relative;
             background-image: url('images/GivingGramWebsitePicture.JPG');
-            background-size: initial;
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            width: 100%;
+            width: 100vw;
             height: 400px;
             display: flex;
             justify-content: center;
