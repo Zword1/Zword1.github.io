@@ -29,15 +29,15 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            width: 100%;
+            width: 100vw;
             height: 400px;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             color: white;
-            margin: -100; /* Ensures no unexpected spacing */
-            padding: -100; /* Ensures no unexpected padding */
+            margin: 0; /* Ensures no unexpected spacing */
+            padding: 0; /* Ensures no unexpected padding */
             box-sizing: border-box; /* Prevents unwanted width calculation issues */
         }
 
