@@ -40,13 +40,13 @@
         flex-direction: column;
         color: white;
         border: 2px solid red; /* Debugging border */
-        margin: 0;
-        padding: 0;
+        margin: -0;
+        padding: -0;
         }
 
         html, body {
-            margin: 0;
-            padding: 0;
+            margin: -0;
+            padding: -0;
             width: 100%;
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
