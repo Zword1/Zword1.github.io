@@ -30,13 +30,13 @@
              position: relative;
         background-image: url('images/GivingGramWebsitePicture.JPG');
         background-size: cover;
-        background-position: left;
+        background-position: center;
         background-repeat: no-repeat; /* Ensures no tiling */
-        height: 400px;
+        height: 500px;
         width: 100vw; /* Full width of the viewport */
         display: flex;
-        justify-content: left;
-        align-items: left;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
         color: white;
         margin: 0; /* Remove default margins */
