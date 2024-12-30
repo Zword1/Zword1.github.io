@@ -27,28 +27,20 @@
         }
 
         header {
-             position: relative;
-        background-image: url('images/GivingGramWebsitePicture.JPG');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat; /* Ensures no tiling */
-        height: 500px;
-        width: 100vw; /* Full width of the viewport */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: white;
-        border: 2px solid red; /* Debugging border */
-        margin: -0;
-        padding: -0;
-        }
-
-        html, body {
-            margin: -0;
-            padding: -0;
-            width: 100%;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+        position: relative;
+    background-image: url('images/ZePrint3DLogo.png.jpg'); /* Ensure the path is correct */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    height: 400px;
+    width: 100vw; /* Spans the full viewport width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    margin: 0;
+    padding: 0;
         }
 
         header h1 {
