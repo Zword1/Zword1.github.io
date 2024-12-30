@@ -28,7 +28,7 @@
 
         header {
         position: relative;
-    background-image: url('images/ZePrint3DLogo.png.jpg'); /* Ensure the path is correct */
+    background-image: url('images/GivingGramWebsitePicture.JPG'); /* Ensure the path is correct */
     background-size: cover; /* Ensures the image covers the entire area */
     background-position: center center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents tiling */
