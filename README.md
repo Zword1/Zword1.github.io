@@ -23,39 +23,30 @@
             text-align: center;
             color: #333;
             background: linear-gradient(135deg, #e8f6ef, #a9dfbf);
-            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         header {
-        position: relative;
-    background-image: url('images/GivingGramWebsitePicture.JPG'); /* Ensure the path is correct */
-    background-size: cover; /* Ensures the image covers the entire area */
-    background-position: center center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents tiling */
-    height: 400px;
-    width: 100vw; /* Spans the full viewport width */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-    margin: 0;
-    padding: 0;
+            position: relative;
+            background-image: url('images/ZePrint3DLogo.png.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
         }
 
         header h1 {
-            position: absolute;
-            top: 20px;
-            left: 20px;
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 2rem;
             text-shadow: 1px 1px 2px black;
         }
 
         header p {
-            position: absolute;
-            bottom: 20px;
-            margin: 0;
+            margin: 10px 0;
             font-size: 1.2rem;
             font-style: italic;
             text-shadow: 1px 1px 2px black;
@@ -110,8 +101,7 @@
         }
 
         input, textarea {
-            width: 90%;
-            max-width: 500px;
+            width: 100%;
             margin-bottom: 15px;
             padding: 10px;
             font-size: 1rem;
@@ -151,18 +141,12 @@
             font-size: 0.9rem;
             color: #fff;
         }
-
-        @media (max-width: 768px) {
-        header {
-            height: 250px; /* Adjust height for smaller screens */
-        }
-        
     </style>
 </head>
 
 <body>
     <header>
-        <h1>GivingGrams</h1>
+        <h1>GivingGrams.com</h1>
         <p>The Gram that keeps on Giving!</p>
     </header>
 
