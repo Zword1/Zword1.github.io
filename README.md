@@ -29,7 +29,7 @@
             position: relative;
             background-image: url('images/GivingGramWebsitePicture.JPG');
             background-size: cover;
-            background-position: left;
+            background-position: right;
             height: 400px;
             width: 100vw;
             display: flex;
