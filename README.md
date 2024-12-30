@@ -26,19 +26,15 @@
         header {
             position: relative;
             background-image: url('images/GivingGramWebsitePicture.JPG');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            width: 100vw;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: white;
-            margin: 0; /* Ensures no unexpected spacing */
-            padding: 0; /* Ensures no unexpected padding */
-            box-sizing: border-box; /* Prevents unwanted width calculation issues */
+            background-size: cover; /* Ensures the image covers the entire area */
+            background-position: center; /* Centers the image both horizontally and vertically */
+            background-repeat: no-repeat; /* Prevents repetition of the image */
+            width: 100vw; /* Makes sure the header spans the full viewport width */
+            height: 400px; /* Keeps the desired height of the header */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Prevents unwanted width calculations */
+            overflow: hidden; /* Ensures no parts of the image overflow */
         }
 
         header h1 {
