@@ -31,7 +31,7 @@
             background-size: cover;
             background-position: center;
             height: 400px;
-            width: 100vw;
+            width: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
