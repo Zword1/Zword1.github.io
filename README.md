@@ -39,8 +39,6 @@
         align-items: center;
         flex-direction: column;
         color: white;
-        margin: 0; /* Remove default margins */
-        padding: 0; /* Remove default paddings */
         }
 
         header h1 {
