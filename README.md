@@ -146,7 +146,7 @@
 
 <body>
     <header>
-        <h1>GivingGrams.com</h1>
+        <h1>GivingGrams</h1>
         <p>The Gram that keeps on Giving!</p>
     </header>
 
