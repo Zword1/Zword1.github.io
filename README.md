@@ -33,7 +33,7 @@
     background-position: center center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents tiling */
     height: 400px;
-    width: 100px; /* Spans the full viewport width */
+    width: 100vw; /* Spans the full viewport width */
     display: flex;
     justify-content: center;
     align-items: center;
