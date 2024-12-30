@@ -36,17 +36,21 @@
             align-items: center;
             flex-direction: column;
             color: white;
-            text-align: center;
         }
 
         header h1 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
             margin: 0;
-            font-size: 2rem;
+            font-size: 1.5rem;
             text-shadow: 1px 1px 2px black;
         }
 
         header p {
-            margin: 10px 0;
+            position: absolute;
+            bottom: 20px;
+            margin: 0;
             font-size: 1.2rem;
             font-style: italic;
             text-shadow: 1px 1px 2px black;
@@ -101,7 +105,8 @@
         }
 
         input, textarea {
-            width: 100%;
+            width: 90%;
+            max-width: 500px;
             margin-bottom: 15px;
             padding: 10px;
             font-size: 1rem;
@@ -146,7 +151,7 @@
 
 <body>
     <header>
-        <h1>GivingGrams</h1>
+        <h1>GivingGrams.com</h1>
         <p>The Gram that keeps on Giving!</p>
     </header>
 
