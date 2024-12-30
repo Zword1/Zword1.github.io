@@ -29,7 +29,7 @@
             background-size: initial;
             background-position: center;
             background-repeat: no-repeat;
-            width: 100vw;
+            width: 100%;
             height: 400px;
             display: flex;
             justify-content: center;
