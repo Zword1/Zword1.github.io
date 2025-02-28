@@ -15,28 +15,30 @@
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
     <style>
-        /* General Styles */
-        body {
-            font-family: 'Roboto', sans-serif;
+        /* Reset and General Styles */
+        * {
             margin: 0;
             padding: 0;
-            text-align: center;
-            color: #333;
-            background: linear-gradient(135deg, #e8f6ef, #a9dfbf);
+            box-sizing: border-box;
         }
 
-        /* Hero Section */
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Full-Width Hero Section */
         .hero {
             position: relative;
-            width: 100%;
+            width: 100vw;
             height: 100vh;
-            background: url('images/GivingGramWebsitePicture.JPG') center/cover no-repeat;
+            background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
         }
 
         .hero h1 {
@@ -60,7 +62,7 @@
             cursor: pointer;
             margin-top: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.2s, background-color 0.3s;
         }
 
