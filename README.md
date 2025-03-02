@@ -42,19 +42,6 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
         }
 
-        header {
-            position: relative;
-            background-image: url('images/GivingGramWebsitePicture.JPG');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: white;
-        }
-
         header h1 {
             position: absolute;
             top: 20px;
