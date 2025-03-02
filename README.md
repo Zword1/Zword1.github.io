@@ -18,7 +18,7 @@
         /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
-            margin: auto;
+            margin: 0;
             padding: 0;
             text-align: center;
             color: #333;
