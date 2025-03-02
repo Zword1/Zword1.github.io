@@ -18,7 +18,7 @@
         /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
-            margin: 0;
+            margin: -0;
             padding: 0;
             text-align: center;
             color: #333;
@@ -28,7 +28,7 @@
         /* Hero Section */
         .hero {
             position: relative;
-            width: -100vw;
+            width: 100vw;
             height: 100vh;
             background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
             background-size: cover;
