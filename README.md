@@ -18,9 +18,9 @@
         /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
-            margin: -0;
+            margin: 0;
             padding: 0;
-            text-align: -50px;
+            text-align: left;
             color: #333;
             background: linear-gradient(180deg, #e8f6ef, #a9dfbf);
         }
