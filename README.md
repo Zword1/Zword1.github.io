@@ -31,8 +31,7 @@
             width: 100vw;
             height: 100vh;
             background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
-            background-size: cover;
-            background-position:center center:
+            background-size: contain;
             background-attachment: fixed; /* Prevent scrolling */
             display: flex;
             align-items: center;
