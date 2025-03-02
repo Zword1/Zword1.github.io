@@ -15,7 +15,7 @@
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
     <style>
-        /* Reset and General Styles */
+        /* Reset & General Styles */
         * {
             margin: 0;
             padding: 0;
@@ -28,12 +28,14 @@
             text-align: center;
         }
 
-        /* Full-Width Hero Section */
+        /* Hero Section with Fixed Background */
         .hero {
             position: relative;
             width: 100vw;
             height: 100vh;
-            background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center/cover;
+            background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed; /* Ensures the background stays put */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -44,7 +46,6 @@
         .hero h1 {
             font-size: 3rem;
             font-weight: 700;
-            margin: 0;
         }
 
         .hero p {
@@ -69,6 +70,13 @@
         .cta-button:hover {
             background-color: #4cae4c;
             transform: translateY(-3px);
+        }
+
+        /* Additional Content Section */
+        .content {
+            padding: 50px 20px;
+            background-color: #f8f9fa;
+            color: #333;
         }
 
         /* Responsive Design */
@@ -97,6 +105,13 @@
         <p>The Gram that keeps on Giving</p>
         <button class="cta-button" onclick="openPaymentForm()">Start Giving</button>
     </header>
+
+    <!-- Extra Content to Show Scrolling Effect -->
+    <section class="content">
+        <h2>What We Do</h2>
+        <p>GivingGrams is all about spreading positivity. You can send a heartfelt letter to anyone in the world with just a few clicks.</p>
+        <p>Scroll down to see how it works.</p>
+    </section>
 
     <script>
         function openPaymentForm() {
