@@ -22,30 +22,29 @@
             box-sizing: border-box;
         }
 
-        /* Prevent horizontal scrolling */
-        html, body {
-            overflow-x: hidden;
-            width: 1000%;
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            text-align: center;
         }
 
         /* Full-Width Hero Section */
         .hero {
             position: relative;
-            width: 100%;
+            width: 100vw;
             height: 100vh;
-            background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
-            background-size: cover;
+            background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            text-align: center;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
         }
 
         .hero h1 {
             font-size: 3rem;
             font-weight: 700;
+            margin: 0;
         }
 
         .hero p {
