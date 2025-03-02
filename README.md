@@ -20,7 +20,7 @@
             font-family: 'Roboto', sans-serif;
             margin: -0;
             padding: 0;
-            text-align: center;
+            text-align: 50px;
             color: #333;
             background: linear-gradient(180deg, #e8f6ef, #a9dfbf);
         }
@@ -84,7 +84,7 @@
 
         /* Letter Counter */
         .letter-counter {
-            margin: 30px 50;
+            margin: 30px;
             font-size: 1.5rem;
         }
 
