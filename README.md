@@ -84,7 +84,7 @@
 
         /* Letter Counter */
         .letter-counter {
-            margin: 900px 0;
+            margin: 30px 50;
             font-size: 1.5rem;
         }
 
