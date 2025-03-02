@@ -16,13 +16,17 @@
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
     <style>
         /* General Styles */
-        body {
-            font-family: 'Roboto', sans-serif;
+        /* Reset and General Styles */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
             text-align: center;
-            color: #333;
-            background: linear-gradient(135deg, #e8f6ef, #a9dfbf);
         }
 
         /* Full-Width Hero Section */
