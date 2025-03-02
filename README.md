@@ -25,7 +25,7 @@
         /* Prevent horizontal scrolling */
         html, body {
             overflow-x: hidden;
-            width: 100%;
+            width: 1000%;
         }
 
         /* Full-Width Hero Section */
