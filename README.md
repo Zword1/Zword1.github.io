@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GivingGrams - The Gram That Keeps on Giving</title>
-    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://js.stripe.com/v3/"></script> <!-- Stripe Library -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" 
         content="default-src 'self'; script-src 'self' https://js.stripe.com; 
@@ -15,7 +15,6 @@
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
     <style>
-        /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -32,13 +31,13 @@
             height: 100vh;
             background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
             background-size: cover;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Prevent scrolling */
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
             color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
         }
 
         .hero h1 {
@@ -70,13 +69,17 @@
             transform: translateY(-3px);
         }
 
-        /* Letter Counter */
+        /* Main Content */
+        main {
+            padding: 20px;
+        }
+
         .letter-counter {
             margin: 30px 0;
             font-size: 1.5rem;
         }
 
-        /* Payment Form */
+        /* Payment Container */
         #payment-container {
             display: none;
             margin-top: 30px;
@@ -88,8 +91,17 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
     </style>
 </head>
+
 <body>
     <!-- Hero Section -->
     <header class="hero">
@@ -99,33 +111,37 @@
     </header>
 
     <main>
-        <!-- Letter Counter -->
         <div class="letter-counter">
             <p><strong>Letters Sent</strong></p>
             <p id="letterCount">0</p>
         </div>
 
-        <!-- Payment Form -->
+        <button onclick="openPaymentForm()">Start Giving</button>
+
         <div id="payment-container">
             <h2>Complete Your GivingGram</h2>
             <form id="paymentForm">
                 <label for="recipientName">Recipient's Name:</label>
-                <input type="text" id="recipientName" required>
+                <input type="text" id="recipientName" name="recipientName" required>
 
                 <label for="recipientAddress">Recipient's Address:</label>
-                <input type="text" id="recipientAddress" required>
+                <input type="text" id="recipientAddress" name="recipientAddress" required>
 
                 <label for="email">Your Email Address:</label>
-                <input type="email" id="email" required>
-
-                <label for="card-element">Payment Details:</label>
-                <div id="card-element"></div>
-                <div id="card-errors"></div>
+                <input type="email" id="email" name="email" required>
                 
+                <label for="card-element">Payment Details:</label>
+                <div id="card-element"></div> 
+                <div id="card-errors" role="alert"></div><br>
+
                 <button type="submit">Submit Payment</button>
             </form>
         </div>
     </main>
+
+    <footer>
+        <p>Spread kindness, one letter at a time.</p>
+    </footer>
 
     <script>
         const API_BASE = "https://your-secure-api.com/api";
@@ -147,22 +163,19 @@
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
-
             const response = await fetch(`${API_BASE}/create-payment-intent`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
+                body: JSON.stringify({ email: email })
             });
-
             const { clientSecret } = await response.json();
             const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
-                payment_method: { card, billing_details: { email } }
+                payment_method: { card: card, billing_details: { email: email } }
             });
-
             if (error) {
-                document.getElementById('card-errors').textContent = "There was an issue with your payment.";
+                document.getElementById('card-errors').textContent = "Payment issue. Try again.";
             } else if (paymentIntent.status === "succeeded") {
-                alert("Thank you for your GivingGram! Your letter will be delivered soon.");
+                alert("Thank you for your GivingGram!");
                 fetchLetterCount();
                 document.getElementById('payment-container').style.display = 'none';
             }
