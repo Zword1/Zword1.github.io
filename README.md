@@ -25,35 +25,31 @@
             background: linear-gradient(135deg, #e8f6ef, #a9dfbf);
         }
 
-        header {
+        /* Hero Section */
+        .hero {
             position: relative;
-            background-image: url('images/GivingGramWebsitePicture.JPG');
+            width: 100vw;
+            height: 100vh;
+            background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
             background-size: cover;
-            background-position: center;
-            height: 400px;
+            background-attachment: fixed; /* Prevent scrolling */
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             flex-direction: column;
             color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
         }
 
-        header h1 {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            margin: 0;
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .hero p {
             font-size: 1.5rem;
-            text-shadow: 1px 1px 2px black;
-        }
-
-        header p {
-            position: absolute;
-            bottom: 20px;
-            margin: 0;
-            font-size: 1.2rem;
             font-style: italic;
-            text-shadow: 1px 1px 2px black;
+            margin-top: 10px;
         }
 
         main {
@@ -150,7 +146,7 @@
 </head>
 
 <body>
-    <header>
+<header class="hero">
         <h1>GivingGrams</h1>
         <p>The Gram that keeps on Giving</p>
     </header>
