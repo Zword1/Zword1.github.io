@@ -34,8 +34,8 @@
             background-size: cover;
             background-attachment: fixed; /* Prevent scrolling */
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: auto;
+            justify-content: auto;
             flex-direction: column;
             color: white;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
