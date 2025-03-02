@@ -18,8 +18,8 @@
         /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: -50;
+            margin: auto;
+            padding: 0;
             text-align: center;
             color: #333;
             background: linear-gradient(180deg, #e8f6ef, #a9dfbf);
@@ -27,7 +27,7 @@
 
         /* Hero Section */
         .hero {
-            position: relative;
+            position: auto;
             width: 100vw;
             height: 100vh;
             background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
