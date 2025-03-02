@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GivingGrams - The Gram That Keeps on Giving</title>
+    <title>GivingGrams  The Gram That Keeps on Giving</title>
     <script src="https://js.stripe.com/v3/"></script> <!-- Stripe Library -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" 
