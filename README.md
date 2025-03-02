@@ -23,12 +23,6 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #fff;
-            text-align: center;
-        }
-
         /* Full-Width Hero Section */
         .hero {
             position: relative;
