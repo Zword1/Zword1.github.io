@@ -42,11 +42,18 @@
         }
 
         .hero h1 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            margin: 0;
             font-size: 3rem;
             font-weight: 700;
         }
 
         .hero p {
+             position: absolute;
+            bottom: 20px;
+            margin: 0;
             font-size: 1.5rem;
             font-style: italic;
             margin-top: 10px;
