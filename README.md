@@ -4,34 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GivingGrams - The Gram That Keeps on Giving</title>
-    <script src="https://js.stripe.com/v3/"></script> <!-- Stripe Library -->
+    <script src="https://js.stripe.com/v3/"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" 
         content="default-src 'self'; script-src 'self' https://js.stripe.com; 
                  style-src 'self' 'unsafe-inline'; 
                  img-src 'self' data:; 
                  connect-src 'self' https://your-secure-api.com;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
             text-align: center;
-            color: #333;
             background: linear-gradient(135deg, #e8f6ef, #a9dfbf);
         }
 
-        /* Hero Section */
         .hero {
             position: relative;
             width: 100vw;
             height: 100vh;
             background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
             background-size: cover;
-            background-attachment: fixed; /* Prevent scrolling */
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -69,7 +68,6 @@
             transform: translateY(-3px);
         }
 
-        /* Main Content */
         main {
             padding: 20px;
         }
@@ -79,20 +77,17 @@
             font-size: 1.5rem;
         }
 
-        /* Payment Container */
         #payment-container {
             display: none;
             margin-top: 30px;
             background: white;
             padding: 30px;
-            margin: 30px auto;
             width: 90%;
             max-width: 500px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Footer */
         footer {
             background: #333;
             color: white;
@@ -103,7 +98,6 @@
 </head>
 
 <body>
-    <!-- Hero Section -->
     <header class="hero">
         <h1>GivingGrams</h1>
         <p>The Gram that keeps on Giving</p>
@@ -116,24 +110,14 @@
             <p id="letterCount">0</p>
         </div>
 
-        <button onclick="openPaymentForm()">Start Giving</button>
-
         <div id="payment-container">
             <h2>Complete Your GivingGram</h2>
             <form id="paymentForm">
-                <label for="recipientName">Recipient's Name:</label>
-                <input type="text" id="recipientName" name="recipientName" required>
-
-                <label for="recipientAddress">Recipient's Address:</label>
-                <input type="text" id="recipientAddress" name="recipientAddress" required>
-
                 <label for="email">Your Email Address:</label>
                 <input type="email" id="email" name="email" required>
-                
                 <label for="card-element">Payment Details:</label>
                 <div id="card-element"></div> 
                 <div id="card-errors" role="alert"></div><br>
-
                 <button type="submit">Submit Payment</button>
             </form>
         </div>
@@ -173,9 +157,9 @@
                 payment_method: { card: card, billing_details: { email: email } }
             });
             if (error) {
-                document.getElementById('card-errors').textContent = "Payment issue. Try again.";
+                document.getElementById('card-errors').textContent = "There was an issue with your payment.";
             } else if (paymentIntent.status === "succeeded") {
-                alert("Thank you for your GivingGram!");
+                alert("Thank you for your GivingGram! Your letter will be delivered soon.");
                 fetchLetterCount();
                 document.getElementById('payment-container').style.display = 'none';
             }
