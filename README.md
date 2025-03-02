@@ -42,13 +42,13 @@
 
         .hero h1 {
             font-size: 3rem;
-            font-weight: 700;
+            font-weight: 900;
         }
 
         .hero p {
             font-size: 1.5rem;
             font-style: italic;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         .cta-button {
@@ -82,11 +82,11 @@
         /* Payment Container */
         #payment-container {
             display: none;
-            margin-top: 30px;
+            margin-top: -30px;
             background: white;
             padding: 30px;
             margin: 30px auto;
-            width: 100%;
+            width: 90%;
             max-width: 500px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
