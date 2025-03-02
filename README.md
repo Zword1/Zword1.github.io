@@ -20,7 +20,7 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            text-align: left;
+            text-align: eight;
             color: #333;
             background: linear-gradient(180deg, #e8f6ef, #a9dfbf);
         }
