@@ -75,7 +75,7 @@
         }
 
         .letter-counter {
-            margin: 30px 0;
+            margin: 30px 15;
             font-size: 1.5rem;
         }
 
@@ -86,7 +86,7 @@
             background: white;
             padding: 30px;
             margin: 30px auto;
-            width: 90%;
+            width: 100%;
             max-width: 500px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -97,7 +97,7 @@
             background: #333;
             color: white;
             padding: 20px;
-            margin-top: 30px;
+            margin-top: 350px;
         }
     </style>
 </head>
