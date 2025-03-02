@@ -27,15 +27,16 @@
 
         /* Hero Section */
         .hero {
-            position: auto;
+            position: relative;
             width: 100vw;
             height: 100vh;
             background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
             background-size: cover;
+            background-position: 50% 50%;
             background-attachment: fixed; /* Prevent scrolling */
             display: flex;
-            align-items: auto;
-            justify-content: auto;
+            align-items: center;
+            justify-content: center;
             flex-direction: column;
             color: white;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
