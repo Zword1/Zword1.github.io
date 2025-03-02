@@ -28,7 +28,7 @@
         /* Hero Section */
         .hero {
             position: relative;
-            width: 100vw;
+            width: -100vw;
             height: 100vh;
             background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
             background-size: cover;
