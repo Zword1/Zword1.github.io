@@ -71,7 +71,7 @@
             padding: 15px 30px;
             font-size: 1.2rem;
             cursor: pointer;
-            margin-top: 50px;
+            margin-top: 20px;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s, background-color 0.3s;
@@ -84,7 +84,7 @@
 
         /* Letter Counter */
         .letter-counter {
-            margin: 30px 0;
+            margin: 900px 0;
             font-size: 1.5rem;
         }
 
