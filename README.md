@@ -30,12 +30,12 @@
             position: relative;
             width: 100vw;
             height: 100vh;
-            background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
+            background: url('images/GivingGramWebsitePicture.JPG') no-repeat left left;
             background-size: cover;
             background-attachment: fixed; /* Prevent scrolling */
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: left;
+            justify-content: left;
             flex-direction: column;
             color: white;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
