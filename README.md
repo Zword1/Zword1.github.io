@@ -55,17 +55,17 @@
     <header class="header"></header>
     <div class="row">
         <div class="col">
-            <img src="./images/GivingGramWebsitePictures.jpg" alt="">
+            <img src="./images/GivingGramWebsitePicture.JPG" alt="">
             <h3>Maintenance</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit, recusandae architecto repellat mollitia unde dolor!</p>
         </div>
         <div class="col">
-            <img src="./images/img-2.jpg" alt="">
+            <img src="./images/GivingGramWebsitePicture.JPG" alt="">
             <h3>Software</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit, recusandae architecto repellat mollitia unde dolor!</p>
         </div>
         <div class="col">
-            <img src="./images/img-3.jpg" alt="">
+            <img src="./images/GivingGramWebsitePicture.JPG" alt="">
             <h3>Hardware</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit, recusandae architecto repellat mollitia unde dolor!</p>
         </div>
