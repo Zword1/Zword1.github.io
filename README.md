@@ -6,6 +6,7 @@
     <title>GivingGrams - The Gram That Keeps on Giving</title>
     <script src="https://js.stripe.com/v3/"></script> <!-- Stripe Library -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <meta http-equiv="Content-Security-Policy" 
         content="default-src 'self'; script-src 'self' https://js.stripe.com; 
                  style-src 'self' 'unsafe-inline'; 
