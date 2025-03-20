@@ -166,6 +166,7 @@
             <p id="letterCount">0</p>
         </div>
 
+
         <!-- Start Giving Button -->
         <button onclick="openPaymentForm()">Start Giving</button>
 
@@ -214,6 +215,8 @@
     </footer>
 
     <script>
+        console.log("Script Loaded");
+        
         const API_BASE = "https://your-secure-api.com/api"; // Replace with your production backend URL
         let stripe = Stripe("your-publishable-key"); // Replace with your Stripe publishable key
         let elements = stripe.elements();
