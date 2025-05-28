@@ -1,134 +1,180 @@
- /* General Styles */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            color: #333;
-            background: linear-gradient(180deg, #e8f6ef, #a9dfbf); 
-        }
+/* General Styles */
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed; /* Prevent scrolling */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: white;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-        }
+*, *:before, *:after {
+    box-sizing: inherit;
+}
 
-        .hero h1 {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            margin: 0;
-            font-size: 3rem;
-            font-weight: 700;
-        }
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #333;
+    background: linear-gradient(180deg, #e8f6ef, #a9dfbf);
+}
 
-        .hero p {
-             position: absolute;
-            bottom: 20px;
-            margin: 0;
-            font-size: 1.5rem;
-            font-style: italic;
-            margin-top: 10px;
-        }
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    text-align: center;
+}
 
-        main {
-            padding: 20px;
-        }
+.hero h1 {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 700;
+}
 
-        /* Button Styles */
-        button {
-            background-color: #58d68d;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-top: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, background-color 0.3s;
-        }
+.hero p {
+    position: absolute;
+    bottom: 2rem;
+    margin: 0;
+    font-size: 1.5rem;
+    font-style: italic;
+}
 
-        button:hover {
-            background-color: #4cae4c;
-            transform: translateY(-3px);
-        }
+/* Main content padding */
+main {
+    padding: 5vw;
+}
 
-        /* Letter Counter */
-        .letter-counter {
-            margin: 30px;
-            font-size: 1.5rem;
-        }
+/* Button Styles */
+button {
+    background-color: #58d68d;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, background-color 0.3s;
+}
 
-        #payment-container {
-            display: none;
-            margin-top: 30px;
-            background: white;
-            padding: 30px;
-            margin: 30px auto;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
+button:hover {
+    background-color: #4cae4c;
+    transform: translateY(-3px);
+}
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
+/* Letter Counter */
+.letter-counter {
+    margin: 2rem auto;
+    font-size: 1.5rem;
+}
 
-        input, textarea {
-            width: 90%;
-            max-width: 500px;
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+/* Payment Form Container */
+#payment-container {
+    display: none;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
-        input:focus, textarea:focus {
-            border-color: #2ecc71;
-            outline: none;
-            box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
-        }
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
 
-        #card-errors {
-            color: red;
-            margin-top: 10px;
-        }
+input, textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-        /* Info Section */
-        .info-section {
-            padding: 20px;
-            background-color: #f9f9f9;
-            text-align: left;
-            margin-top: 30px;
-            border-radius: 10px;
-        }
+input:focus, textarea:focus {
+    border-color: #2ecc71;
+    outline: none;
+    box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+}
 
-        footer {
-            background: #333;
-            color: white;
-            padding: 20px;
-            margin-top: 30px;
-        }
+#card-errors {
+    color: red;
+    margin-top: 10px;
+}
 
-        footer p {
-            margin: 5px;
-            font-size: 0.9rem;
-            color: #fff;
-        }
+/* Info Section */
+.info-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: left;
+    margin: 2rem auto;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 900px;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 5px;
+    font-size: 0.9rem;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+        top: 1rem;
+        left: 1rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        bottom: 1rem;
+    }
+
+    button {
+        width: 90%;
+        font-size: 1rem;
+    }
+
+    .letter-counter {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+}
