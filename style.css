@@ -1,4 +1,4 @@
-/* General Reset */
+/* Reset & Base Styles */
 html {
     box-sizing: border-box;
     font-size: 16px;
@@ -17,7 +17,46 @@ body {
     background: linear-gradient(180deg, #e8f6ef, #a9dfbf);
 }
 
-/* Hero Section */
+/* Sticky Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    padding: 0.8rem 5vw;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2ecc71;
+    text-decoration: none;
+}
+
+.nav-links a {
+    margin-left: 2rem;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #2ecc71;
+}
+
+/* Hero Section with Scroll-Under */
 .hero {
     position: fixed;
     top: 0;
@@ -26,8 +65,8 @@ body {
     height: 100vh;
     background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
     background-size: cover;
-    background-attachment: scroll; /* Better for mobile */
-    z-index: -1; /* Sit behind the page */
+    background-attachment: scroll;
+    z-index: -1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,7 +78,6 @@ body {
     overflow: hidden;
 }
 
-/* Optional overlay for readability */
 .hero::after {
     content: "";
     position: absolute;
@@ -48,7 +86,6 @@ body {
     z-index: 1;
 }
 
-/* Hero Text Styling */
 .hero h1, .hero p {
     position: relative;
     z-index: 2;
@@ -66,10 +103,13 @@ body {
     font-style: italic;
 }
 
-/* Main Content */
+/* Main Content Container */
 main {
-    margin-top: 100vh; /* So content starts after hero */
+    margin-top: 100vh;
     padding: 5vw;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Buttons */
@@ -80,10 +120,12 @@ button {
     padding: 1rem 2rem;
     font-size: 1.2rem;
     cursor: pointer;
-    margin-top: 20px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, background-color 0.3s;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
 }
 
 button:hover {
@@ -95,6 +137,8 @@ button:hover {
 .letter-counter {
     margin: 2rem auto;
     font-size: 1.5rem;
+    text-align: center;
+    max-width: 90%;
 }
 
 /* Payment Form Container */
@@ -153,6 +197,7 @@ footer {
     color: white;
     padding: 20px;
     margin-top: 30px;
+    text-align: center;
 }
 
 footer p {
@@ -171,8 +216,8 @@ footer p {
     }
 
     button {
-        width: 90%;
         font-size: 1rem;
+        width: 90%;
     }
 
     .letter-counter {
@@ -180,7 +225,25 @@ footer p {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+    .navbar-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .nav-links a {
+        margin: 0.5rem 0;
+    }
+
     .hero h1 {
         font-size: 1.5rem;
     }
