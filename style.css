@@ -22,10 +22,10 @@ body {
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
     background-size: cover;
-    background-attachment: scroll; /* Changed from fixed for better mobile support */
+    background-attachment: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,13 +34,6 @@ body {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
     padding: 20px;
     text-align: center;
-}
-
-/* Optional media query to simulate fixed-like effect on large screens */
-@media (min-width: 768px) {
-    .hero {
-        background-attachment: fixed;
-    }
 }
 
 .hero h1 {
