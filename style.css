@@ -1,4 +1,4 @@
-/* General Styles */
+/* General Reset */
 html {
     box-sizing: border-box;
     font-size: 16px;
@@ -13,19 +13,21 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    text-align: center;
     color: #333;
     background: linear-gradient(180deg, #e8f6ef, #a9dfbf);
 }
 
 /* Hero Section */
 .hero {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
     background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: scroll; /* Better for mobile */
+    z-index: -1; /* Sit behind the page */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,31 +36,43 @@ body {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
     padding: 20px;
     text-align: center;
+    overflow: hidden;
+}
+
+/* Optional overlay for readability */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+/* Hero Text Styling */
+.hero h1, .hero p {
+    position: relative;
+    z-index: 2;
 }
 
 .hero h1 {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
     margin: 0;
     font-size: 3rem;
     font-weight: 700;
 }
 
 .hero p {
-    position: absolute;
-    bottom: 2rem;
-    margin: 0;
+    margin-top: 10px;
     font-size: 1.5rem;
     font-style: italic;
 }
 
-/* Main content padding */
+/* Main Content */
 main {
+    margin-top: 100vh; /* So content starts after hero */
     padding: 5vw;
 }
 
-/* Button Styles */
+/* Buttons */
 button {
     background-color: #58d68d;
     color: white;
@@ -150,13 +164,10 @@ footer p {
 @media (max-width: 768px) {
     .hero h1 {
         font-size: 2rem;
-        top: 1rem;
-        left: 1rem;
     }
 
     .hero p {
         font-size: 1.2rem;
-        bottom: 1rem;
     }
 
     button {
