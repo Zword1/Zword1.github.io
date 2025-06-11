@@ -38,6 +38,14 @@ function animateCount(element, start, end, duration = 1000) {
             setTimeout(() => parent.classList.remove('pulse'), 300);
         }
 
+        document.getElementById('testCountUpdate').addEventListener('click', () => {
+            const counterElement = document.getElementById('letterCount');
+            const currentCount = parseInt(counterElement.textContent) || 0;
+            const newCount = currentCount + 1;
+
+            animateCount(counterElement, currentCount, newCount);
+        });
+
 // Show payment form
 function openPaymentForm() {
     document.getElementById('payment-container').style.display = 'block';
