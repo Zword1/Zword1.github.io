@@ -11,11 +11,32 @@ async function fetchLetterCount() {
     try {
         const response = await fetch(`${API_BASE}/letters/count`);
         const data = await response.json();
-        document.getElementById('letterCount').textContent = data.count;
+        const counterElement = document.getElementById('letterCount');
+        const currentCount = parseInt(counterElement.textContent) || 0;
+        animateCount(counterElement, currentCount, data.count);
+
     } catch (error) {
         console.error("Failed to fetch letter count", error);
     }
 }
+
+function animateCount(element, start, end, duration = 1000) {
+    let startTime = null;
+
+    function updateCount(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        element.textContent = value;
+
+        if (progress < 1) {
+            requestAnimationFrame(updateCount);
+        } else {
+            // Add pulse effect on complete
+            const parent = element.parentElement;
+            parent.classList.add('pulse');
+            setTimeout(() => parent.classList.remove('pulse'), 300);
+        }
 
 // Show payment form
 function openPaymentForm() {
