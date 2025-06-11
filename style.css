@@ -89,6 +89,14 @@ button:hover {
     font-size: 1.5rem;
 }
 
+.letter-counter p:last-child {
+    transition: transform 0.3s ease;
+}
+
+.letter-counter.pulse p:last-child {
+    transform: scale(1.2);
+}
+
 /* Payment Form Container */
 #payment-container {
     display: none;
