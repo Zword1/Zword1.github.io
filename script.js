@@ -19,33 +19,29 @@ async function fetchLetterCount() {
     }
 }
 
-let currentAnimation = null;
+let countAnimationFrame;
 
-function animateCount(element, start, end, duration = 1000) {
-    // Cancel previous animation
-    if (currentAnimation) cancelAnimationFrame(currentAnimation);
+function animateCount(element, targetNumber, duration = 1000) {
+    if (countAnimationFrame) cancelAnimationFrame(countAnimationFrame);
 
-    // Clean number parsing (remove commas, default to 0)
-    start = parseInt(String(start).replace(/,/g, '')) || 0;
-    end = parseInt(String(end).replace(/,/g, '')) || 0;
-
+    const startNumber = parseInt(element.textContent.replace(/,/g, '')) || 0;
     const startTime = performance.now();
 
-    function updateCount(currentTime) {
+    function update(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const value = Math.floor(start + (end - start) * progress);
-        element.textContent = value.toLocaleString();
+        const currentNumber = Math.floor(startNumber + (targetNumber - startNumber) * progress);
+
+        element.textContent = currentNumber.toLocaleString();
 
         if (progress < 1) {
-            currentAnimation = requestAnimationFrame(updateCount);
-        } else {
-            currentAnimation = null;
+            countAnimationFrame = requestAnimationFrame(update);
         }
     }
 
-    currentAnimation = requestAnimationFrame(updateCount);
+    countAnimationFrame = requestAnimationFrame(update);
 }
+
 
 document.getElementById('testCountUpdate').addEventListener('click', () => {
     const counterElement = document.getElementById('letterCount');
@@ -101,9 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (testBtn && counterElement) {
         testBtn.addEventListener('click', () => {
-            const currentCount = parseInt(counterElement.textContent.replace(/,/g, '')) || 0;
-            const newCount = currentCount + 1;
-            animateCount(counterElement, currentCount, newCount);
+            const current = parseInt(counterElement.textContent.replace(/,/g, '')) || 0;
+            const next = current + 1;
+            animateCount(counterElement, next);
         });
     }
 });
