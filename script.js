@@ -21,21 +21,27 @@ async function fetchLetterCount() {
 
 let countAnimationFrame;
 
-function animateCount(element, targetNumber, duration = 1000) {
+function animateLetterCounter(element, endValue, duration = 1000) {
     if (countAnimationFrame) cancelAnimationFrame(countAnimationFrame);
 
-    const startNumber = parseInt(element.textContent.replace(/,/g, '')) || 0;
+    const startValue = parseInt(element.textContent.replace(/,/g, '')) || 0;
     const startTime = performance.now();
+
+    element.parentElement.classList.add('pulse'); // Add pulse class for visual effect
 
     function update(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const currentNumber = Math.floor(startNumber + (targetNumber - startNumber) * progress);
-
-        element.textContent = currentNumber.toLocaleString();
+        const value = Math.floor(startValue + (endValue - startValue) * progress);
+        element.textContent = value.toLocaleString();
 
         if (progress < 1) {
             countAnimationFrame = requestAnimationFrame(update);
+        } else {
+            // Remove the glow effect after a brief delay
+            setTimeout(() => {
+                element.parentElement.classList.remove('pulse');
+            }, 300);
         }
     }
 
@@ -80,7 +86,12 @@ document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             document.getElementById('card-errors').textContent = "There was an issue with your payment.";
         } else if (paymentIntent.status === "succeeded") {
             alert("Thank you for your GivingGram! Your letter will be delivered soon.");
-            fetchLetterCount();
+            // Update counter with animation instead of static fetch
+            const counterEl = document.getElementById('letterCount');
+            const currentCount = parseInt(counterEl.textContent.replace(/,/g, '')) || 0;
+            const newCount = currentCount + 1; // or whatever you get from the server
+            animateLetterCounter(counterEl, newCount);
+
             document.getElementById('payment-container').style.display = 'none';
         }
     } catch (error) {
@@ -91,15 +102,8 @@ document.getElementById('paymentForm').addEventListener('submit', async (e) => {
 // Fetch count on page load
 fetchLetterCount();
 
-document.addEventListener('DOMContentLoaded', () => {
-    const testBtn = document.getElementById('testCountUpdate');
-    const counterElement = document.getElementById('letterCount');
-
-    if (testBtn && counterElement) {
-        testBtn.addEventListener('click', () => {
-            const current = parseInt(counterElement.textContent.replace(/,/g, '')) || 0;
-            const next = current + 1;
-            animateCount(counterElement, next);
-        });
-    }
+document.getElementById('testCountUpdate').addEventListener('click', () => {
+    const el = document.getElementById('letterCount');
+    const start = parseInt(el.textContent.replace(/,/g, '')) || 0;
+    animateLetterCounter(el, start + 1);
 });
