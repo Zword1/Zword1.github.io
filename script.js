@@ -27,14 +27,15 @@ function animateCount(element, start, end, duration = 1000) {
         const progress = Math.min(elapsed / duration, 1);
         const value = Math.floor(start + (end - start) * progress);
         element.textContent = value.toLocaleString();
-        
+
         if (progress < 1) {
             requestAnimationFrame(updateCount);
         }
     }
-    
+
     requestAnimationFrame(updateCount);
 }
+
 
 document.getElementById('testCountUpdate').addEventListener('click', () => {
     const counterElement = document.getElementById('letterCount');
