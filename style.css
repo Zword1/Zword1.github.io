@@ -89,6 +89,18 @@ button:hover {
     font-size: 1.5rem;
 }
 
+.letter-counter p#letterCount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2ecc71;
+    transition: text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.letter-counter.pulse #letterCount {
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.7);
+    transform: scale(1.05);
+}
+
 /* Payment Form Container */
 #payment-container {
     display: none;
