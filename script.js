@@ -37,6 +37,9 @@ function animateCount(element, start, end, duration = 1000) {
             parent.classList.add('pulse');
             setTimeout(() => parent.classList.remove('pulse'), 300);
         }
+    }
+    
+    requestAnimationFrame(updateCount);
 }
 
 // Show payment form
