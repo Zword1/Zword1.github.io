@@ -88,3 +88,16 @@ document.getElementById('paymentForm').addEventListener('submit', async (e) => {
 
 // Fetch count on page load
 fetchLetterCount();
+
+document.addEventListener('DOMContentLoaded', () => {
+    const testBtn = document.getElementById('testCountUpdate');
+    const counterElement = document.getElementById('letterCount');
+
+    if (testBtn && counterElement) {
+        testBtn.addEventListener('click', () => {
+            const currentCount = parseInt(counterElement.textContent) || 0;
+            const newCount = currentCount + 1;
+            animateCount(counterElement, currentCount, newCount);
+        });
+    }
+});
