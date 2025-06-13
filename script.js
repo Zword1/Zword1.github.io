@@ -14,7 +14,6 @@ async function fetchLetterCount() {
         const counterElement = document.getElementById('letterCount');
         const currentCount = parseInt(counterElement.textContent) || 0;
         animateCount(counterElement, currentCount, data.count);
-
     } catch (error) {
         console.error("Failed to fetch letter count", error);
     }
