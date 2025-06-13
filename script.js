@@ -20,21 +20,16 @@ async function fetchLetterCount() {
 }
 
 function animateCount(element, start, end, duration = 1000) {
-    let startTime = null;
+    const startTime = performance.now();
 
     function updateCount(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const progress = Math.min((currentTime - startTime) / duration, 1);
-        const value = Math.floor(progress * (end - start) + start);
-        element.textContent = value;
-
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(start + (end - start) * progress);
+        element.textContent = value.toLocaleString();
+        
         if (progress < 1) {
             requestAnimationFrame(updateCount);
-        } else {
-            // Add pulse effect on complete
-            const parent = element.parentElement;
-            parent.classList.add('pulse');
-            setTimeout(() => parent.classList.remove('pulse'), 300);
         }
     }
     
