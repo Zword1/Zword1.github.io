@@ -19,7 +19,16 @@ async function fetchLetterCount() {
     }
 }
 
+let currentAnimation = null;
+
 function animateCount(element, start, end, duration = 1000) {
+    // Cancel previous animation
+    if (currentAnimation) cancelAnimationFrame(currentAnimation);
+
+    // Clean number parsing (remove commas, default to 0)
+    start = parseInt(String(start).replace(/,/g, '')) || 0;
+    end = parseInt(String(end).replace(/,/g, '')) || 0;
+
     const startTime = performance.now();
 
     function updateCount(currentTime) {
@@ -29,13 +38,14 @@ function animateCount(element, start, end, duration = 1000) {
         element.textContent = value.toLocaleString();
 
         if (progress < 1) {
-            requestAnimationFrame(updateCount);
+            currentAnimation = requestAnimationFrame(updateCount);
+        } else {
+            currentAnimation = null;
         }
     }
 
-    requestAnimationFrame(updateCount);
+    currentAnimation = requestAnimationFrame(updateCount);
 }
-
 
 document.getElementById('testCountUpdate').addEventListener('click', () => {
     const counterElement = document.getElementById('letterCount');
@@ -91,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (testBtn && counterElement) {
         testBtn.addEventListener('click', () => {
-            const currentCount = parseInt(counterElement.textContent) || 0;
+            const currentCount = parseInt(counterElement.textContent.replace(/,/g, '')) || 0;
             const newCount = currentCount + 1;
             animateCount(counterElement, currentCount, newCount);
         });
