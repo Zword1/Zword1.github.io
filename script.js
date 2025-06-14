@@ -18,41 +18,31 @@ async function fetchLetterCount() {
 }
 
 
-function animateRollingCounter(newNumber) {
+function animateRollingCounter(newCount) {
     const container = document.getElementById('letterCount');
-    const newStr = String(newNumber);
-    const oldCols = container.children;
+    const oldCount = parseInt(container.getAttribute("data-count")) || 0;
+    container.setAttribute("data-count", newCount); // track the current count
 
-    // If we need to add columns
-    while (oldCols.length < newStr.length) {
-        const column = document.createElement('div');
-        column.className = 'digit-column';
+    const newDigits = String(newCount).padStart(3, '0').split('');
+    container.innerHTML = ''; // Clear existing content
 
-        const strip = document.createElement('div');
-        strip.className = 'digit-strip';
+    newDigits.forEach((digit, i) => {
+        const digitWrapper = document.createElement('div');
+        digitWrapper.className = 'digit-column';
 
-        for (let i = 0; i <= 9; i++) {
-            const digitSpan = document.createElement('span');
-            digitSpan.textContent = i;
-            strip.appendChild(digitSpan);
+        for (let n = 0; n <= 9; n++) {
+            const span = document.createElement('span');
+            span.textContent = n;
+            digitWrapper.appendChild(span);
         }
 
-        column.appendChild(strip);
-        container.appendChild(column);
-    }
+        container.appendChild(digitWrapper);
 
-    // Update each digit column
-    newStr.padStart(container.children.length, '0').split('').forEach((digit, idx) => {
-        const column = container.children[idx];
-        const strip = column.querySelector('.digit-strip');
-        const target = parseInt(digit, 10);
-        strip.style.transform = `translateY(-${target * 2.8}rem)`; // 2.8rem is the digit height
+        // Animate scroll to the new digit
+        requestAnimationFrame(() => {
+            digitWrapper.style.transform = `translateY(-${digit * 10}%)`;
+        });
     });
-
-    // If we need to remove extra columns
-    while (container.children.length > newStr.length) {
-        container.removeChild(container.lastChild);
-    }
 }
 
 
