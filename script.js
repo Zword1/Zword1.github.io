@@ -11,37 +11,47 @@ async function fetchLetterCount() {
     try {
         const response = await fetch(`${API_BASE}/letters/count`);
         const data = await response.json();
-        const counterElement = document.getElementById('letterCount');
-        const currentCount = parseInt(counterElement.textContent) || 0;
-        animateCount(counterElement, currentCount, data.count);
+        animateRollingCounter(data.count);
     } catch (error) {
         console.error("Failed to fetch letter count", error);
     }
 }
 
-function animateDigitCounter(newNumber) {
+
+function animateRollingCounter(newNumber) {
     const container = document.getElementById('letterCount');
-    const newStr = String(newNumber).padStart(container.childElementCount, '0');
+    const newStr = String(newNumber);
+    const oldCols = container.children;
 
-    // Clear if necessary
-    container.innerHTML = '';
+    // If we need to add columns
+    while (oldCols.length < newStr.length) {
+        const column = document.createElement('div');
+        column.className = 'digit-column';
 
-    for (let i = 0; i < newStr.length; i++) {
-        const digitContainer = document.createElement('span');
-        digitContainer.className = 'digit-container';
+        const strip = document.createElement('div');
+        strip.className = 'digit-strip';
 
-        const digitSpan = document.createElement('span');
-        digitSpan.className = 'digit';
-        digitSpan.textContent = newStr[i];
+        for (let i = 0; i <= 9; i++) {
+            const digitSpan = document.createElement('span');
+            digitSpan.textContent = i;
+            strip.appendChild(digitSpan);
+        }
 
-        // Start slightly below and animate up
-        digitSpan.style.transform = 'translateY(100%)';
-        digitContainer.appendChild(digitSpan);
-        container.appendChild(digitContainer);
+        column.appendChild(strip);
+        container.appendChild(column);
+    }
 
-        requestAnimationFrame(() => {
-            digitSpan.style.transform = 'translateY(0%)';
-        });
+    // Update each digit column
+    newStr.padStart(container.children.length, '0').split('').forEach((digit, idx) => {
+        const column = container.children[idx];
+        const strip = column.querySelector('.digit-strip');
+        const target = parseInt(digit, 10);
+        strip.style.transform = `translateY(-${target * 2.8}rem)`; // 2.8rem is the digit height
+    });
+
+    // If we need to remove extra columns
+    while (container.children.length > newStr.length) {
+        container.removeChild(container.lastChild);
     }
 }
 
@@ -82,15 +92,18 @@ document.getElementById('paymentForm').addEventListener('submit', async (e) => {
         if (error) {
             document.getElementById('card-errors').textContent = "There was an issue with your payment.";
         } else if (paymentIntent.status === "succeeded") {
-         // Simulate new letter count (you can get this from API)
-        const el = document.getElementById('letterCount');
-        const current = parseInt(el.textContent.replace(/,/g, '')) || 0;
-        const updated = current + 1;
+                   alert("Thank you for your GivingGram! Your letter will be delivered soon.");
+                   // Option 1: increment manually
+                   const current = parseInt(document.getElementById("letterCount").getAttribute("data-count")) || 0;
+                   animateRollingCounter(current + 1);
 
-        animateDigitCounter(updated);
+                   // Option 2 (preferred): re-fetch from backend
+                   // fetchLetterCount();
 
-        document.getElementById('payment-container').style.display = 'none';
-        }
+                   document.getElementById('payment-container').style.display = 'none';
+          }
+
+
     } catch (error) {
         console.error("Payment failed", error);
     }
