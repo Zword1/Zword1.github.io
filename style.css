@@ -91,23 +91,36 @@ button:hover {
 
 .digit-counter {
     display: inline-flex;
-    gap: 0.1em;
+    gap: 0.2rem;
     font-size: 2.5rem;
     font-weight: 700;
     color: #2ecc71;
+    justify-content: center;
+    align-items: flex-end;
     overflow: hidden;
 }
 
-.digit-container {
+.digit-column {
     height: 2.8rem;
+    width: 1.6rem;
     overflow: hidden;
     position: relative;
+    background: transparent;
 }
 
-.digit {
-    display: inline-block;
+.digit-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     transition: transform 0.4s ease-in-out;
-    will-change: transform;
+}
+
+.digit-strip span {
+    display: block;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    text-align: center;
 }
 
 /* Payment Form Container */
