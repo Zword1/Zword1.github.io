@@ -19,33 +19,30 @@ async function fetchLetterCount() {
     }
 }
 
-let countAnimationFrame;
+function animateDigitCounter(newNumber) {
+    const container = document.getElementById('letterCount');
+    const newStr = String(newNumber).padStart(container.childElementCount, '0');
 
-function animateLetterCounter(element, endValue, duration = 1000) {
-    if (countAnimationFrame) cancelAnimationFrame(countAnimationFrame);
+    // Clear if necessary
+    container.innerHTML = '';
 
-    const startValue = parseInt(element.textContent.replace(/,/g, '')) || 0;
-    const startTime = performance.now();
+    for (let i = 0; i < newStr.length; i++) {
+        const digitContainer = document.createElement('span');
+        digitContainer.className = 'digit-container';
 
-    element.parentElement.classList.add('pulse'); // Add pulse class for visual effect
+        const digitSpan = document.createElement('span');
+        digitSpan.className = 'digit';
+        digitSpan.textContent = newStr[i];
 
-    function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const value = Math.floor(startValue + (endValue - startValue) * progress);
-        element.textContent = value.toLocaleString();
+        // Start slightly below and animate up
+        digitSpan.style.transform = 'translateY(100%)';
+        digitContainer.appendChild(digitSpan);
+        container.appendChild(digitContainer);
 
-        if (progress < 1) {
-            countAnimationFrame = requestAnimationFrame(update);
-        } else {
-            // Remove the glow effect after a brief delay
-            setTimeout(() => {
-                element.parentElement.classList.remove('pulse');
-            }, 300);
-        }
+        requestAnimationFrame(() => {
+            digitSpan.style.transform = 'translateY(0%)';
+        });
     }
-
-    countAnimationFrame = requestAnimationFrame(update);
 }
 
 
@@ -85,14 +82,14 @@ document.getElementById('paymentForm').addEventListener('submit', async (e) => {
         if (error) {
             document.getElementById('card-errors').textContent = "There was an issue with your payment.";
         } else if (paymentIntent.status === "succeeded") {
-            alert("Thank you for your GivingGram! Your letter will be delivered soon.");
-            // Update counter with animation instead of static fetch
-            const counterEl = document.getElementById('letterCount');
-            const currentCount = parseInt(counterEl.textContent.replace(/,/g, '')) || 0;
-            const newCount = currentCount + 1; // or whatever you get from the server
-            animateLetterCounter(counterEl, newCount);
+         // Simulate new letter count (you can get this from API)
+        const el = document.getElementById('letterCount');
+        const current = parseInt(el.textContent.replace(/,/g, '')) || 0;
+        const updated = current + 1;
 
-            document.getElementById('payment-container').style.display = 'none';
+        animateDigitCounter(updated);
+
+        document.getElementById('payment-container').style.display = 'none';
         }
     } catch (error) {
         console.error("Payment failed", error);
@@ -104,6 +101,6 @@ fetchLetterCount();
 
 document.getElementById('testCountUpdate').addEventListener('click', () => {
     const el = document.getElementById('letterCount');
-    const start = parseInt(el.textContent.replace(/,/g, '')) || 0;
-    animateLetterCounter(el, start + 1);
+    const current = parseInt(el.textContent.replace(/,/g, '')) || 0;
+    animateDigitCounter(current + 1);
 });
