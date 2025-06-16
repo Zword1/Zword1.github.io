@@ -87,10 +87,31 @@ button:hover {
 #letterCount {
     display: flex;
     justify-content: center;
-    gap: 5px;
+    gap: 0.5rem;
     font-size: 2.5rem;
     font-weight: bold;
     overflow: hidden;
+    height: 2.5rem;
+}
+
+.digit-column {
+    position: relative;
+    height: 2.5rem;
+    width: 1.5rem;
+    overflow: hidden;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.digit-column span {
+    display: block;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+    transition: transform 0.5s ease-in-out;
+    font-family: 'Roboto', sans-serif;
+    color: #2c3e50;
 }
 
 .digit-column {
