@@ -17,30 +17,33 @@ async function fetchLetterCount() {
     }
 }
 
-
 function animateRollingCounter(newCount) {
     const container = document.getElementById('letterCount');
     const oldCount = parseInt(container.getAttribute("data-count")) || 0;
-    container.setAttribute("data-count", newCount); // track the current count
+    container.setAttribute("data-count", newCount);
 
-    const newDigits = String(newCount).padStart(3, '0').split('');
-    container.innerHTML = ''; // Clear existing content
+    const digits = String(newCount).padStart(3, '0').split('');
+    container.innerHTML = ''; // Clear old content
 
-    newDigits.forEach((digit, i) => {
-        const digitWrapper = document.createElement('div');
-        digitWrapper.className = 'digit-column';
+    digits.forEach((digit, i) => {
+        const column = document.createElement('div');
+        column.className = 'digit-column';
 
-        for (let n = 0; n <= 9; n++) {
+        const inner = document.createElement('div');
+        inner.style.transition = 'transform 0.5s ease-in-out';
+
+        for (let d = 0; d <= 9; d++) {
             const span = document.createElement('span');
-            span.textContent = n;
-            digitWrapper.appendChild(span);
+            span.textContent = d;
+            inner.appendChild(span);
         }
 
-        container.appendChild(digitWrapper);
+        column.appendChild(inner);
+        container.appendChild(column);
 
-        // Animate scroll to the new digit
+        // Animate to correct position
         requestAnimationFrame(() => {
-            digitWrapper.style.transform = `translateY(-${digit * 10}%)`;
+            inner.style.transform = `translateY(-${digit * 100}%)`;
         });
     });
 }
@@ -83,27 +86,22 @@ document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             document.getElementById('card-errors').textContent = "There was an issue with your payment.";
         } else if (paymentIntent.status === "succeeded") {
                    alert("Thank you for your GivingGram! Your letter will be delivered soon.");
-                   // Option 1: increment manually
                    const current = parseInt(document.getElementById("letterCount").getAttribute("data-count")) || 0;
-                   animateRollingCounter(current + 1);
-
-                   // Option 2 (preferred): re-fetch from backend
-                   // fetchLetterCount();
-
+                   animateRollingCounter(current + 1); 
+                   // or call fetchLetterCount()
                    document.getElementById('payment-container').style.display = 'none';
           }
 
 
-    } catch (error) {
-        console.error("Payment failed", error);
-    }
+        } catch (error) {
+            console.error("Payment failed", error);
+          }
 });
 
 // Fetch count on page load
 fetchLetterCount();
 
-document.getElementById('testCountUpdate').addEventListener('click', () => {
-    const el = document.getElementById('letterCount');
-    const current = parseInt(el.textContent.replace(/,/g, '')) || 0;
-    animateDigitCounter(current + 1);
+document.getElementById('startGiving').addEventListener('dblclick', () => {
+    const current = parseInt(document.getElementById("letterCount").getAttribute("data-count")) || 0;
+    animateRollingCounter(current + 1);
 });
