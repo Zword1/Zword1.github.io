@@ -84,43 +84,9 @@ button:hover {
 }
 
 /* Letter Counter */
-#letterCount {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 2.5rem;
-    font-weight: bold;
-    overflow: hidden;
-    height: 2.5rem;
-}
-
-.digit-column {
-    position: relative;
-    height: 2.5rem;
-    width: 1.5rem;
-    overflow: hidden;
-    border-radius: 5px;
-    background: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-}
-
-.digit-column span {
-    display: block;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    text-align: center;
-    transition: transform 0.5s ease-in-out;
-    font-family: 'Roboto', sans-serif;
-    color: #2c3e50;
-}
-
-.digit-column {
-    display: flex;
-    flex-direction: column;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    transition: transform 0.5s ease-in-out;
-    overflow: hidden;
+.letter-counter {
+    margin: 2rem auto;
+    font-size: 1.5rem;
 }
 
 /* Payment Form Container */
@@ -160,13 +126,6 @@ input:focus, textarea:focus {
 #card-errors {
     color: red;
     margin-top: 10px;
-}
-
-.payment-amount {
-    font-size: 1.1rem;
-    margin: 10px 0;
-    font-weight: bold;
-    color: #2e7d32;
 }
 
 /* Info Section */
