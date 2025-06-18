@@ -1,61 +1,69 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     console.log("Script Loaded");
 
-    const API_BASE = "https://your-secure-api.com/api"; 
-    let stripe = Stripe("your-publishable-key"); 
-    let elements = stripe.elements();
-    let card = elements.create('card');
-    card.mount('#card-element');
+    const API_BASE = "https://your-secure-api.com/api";
+    const startButton = document.getElementById("startGiving");
+    const paymentContainer = document.getElementById("payment-container");
+    const paymentForm = document.getElementById("paymentForm");
+    const emailInput = document.getElementById("email");
+    const letterCountDisplay = document.getElementById("letterCount");
+    const cardErrors = document.getElementById("card-errors");
 
-    // Load letter count
+    let stripe = Stripe("your-publishable-key");
+    let elements = stripe.elements();
+    let card = elements.create("card");
+    card.mount("#card-element");
+
+    // Show payment form
+    startButton.addEventListener("click", () => {
+        paymentContainer.style.display = "block";
+        paymentContainer.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Fetch letter count
     async function fetchLetterCount() {
         try {
             const response = await fetch(`${API_BASE}/letters/count`);
             const data = await response.json();
-            document.getElementById('letterCount').textContent = data.count;
+            letterCountDisplay.textContent = data.count;
         } catch (error) {
             console.error("Failed to fetch letter count", error);
         }
     }
 
-    // Show payment form
-    function openPaymentForm() {
-        document.getElementById('payment-container').style.display = 'block';
-        document.getElementById('payment-container').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Attach event listener
-    document.getElementById('startGiving').addEventListener('click', openPaymentForm);
-
-    // Handle Payment Submission
-    document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+    // Submit payment form
+    paymentForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const email = document.getElementById('email').value;
+        const email = emailInput.value;
 
         try {
             const response = await fetch(`${API_BASE}/create-payment-intent`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email })
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
             });
 
             const { clientSecret } = await response.json();
+
             const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
-                payment_method: { card: card, billing_details: { email: email } }
+                payment_method: {
+                    card: card,
+                    billing_details: { email }
+                }
             });
 
             if (error) {
-                document.getElementById('card-errors').textContent = "There was an issue with your payment.";
+                cardErrors.textContent = "There was an issue with your payment.";
             } else if (paymentIntent.status === "succeeded") {
                 alert("Thank you for your GivingGram! Your letter will be delivered soon.");
                 fetchLetterCount();
-                document.getElementById('payment-container').style.display = 'none';
+                paymentContainer.style.display = "none";
             }
         } catch (error) {
             console.error("Payment failed", error);
         }
     });
 
-    // Fetch count on page load
+    // Load on page ready
     fetchLetterCount();
 });
