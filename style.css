@@ -19,10 +19,16 @@ body {
 }
 
 /* dark mode */
+body {
+  background: white;
+  color: black;
+}
+
 body.dark {
   background: #121212;
   color: #f5f5f5;
 }
+
 
 .hero {
     position: relative;
