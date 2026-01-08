@@ -14,15 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let card = elements.create("card");
     card.mount("#card-element");
 
-    // dark mode 
-    <script>
-  const toggle = document.getElementById("themeToggle");
-
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-  });
-    </script>
-
 
     // Show payment form
     startButton.addEventListener("click", () => {
