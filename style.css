@@ -18,6 +18,12 @@ body {
     background: linear-gradient(180deg, #e8f6ef, #a9dfbf);
 }
 
+/* dark mode */
+body.dark {
+  background: #121212;
+  color: #f5f5f5;
+}
+
 .hero {
     position: relative;
     width: 100%;
