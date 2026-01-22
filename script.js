@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardErrors = document.getElementById("card-errors");
     
     // Light and Dark themes 
-    const toggleTheme = () => {
-    const current = document.documentElement.getAttribute("data-theme");
-    const next = current === "dark" ? "light" : "dark";
+    const themeToggleBtn = document.getElementById("themeToggle");
+
+    themeToggleBtn.addEventListener("click", toggleTheme);
 
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
