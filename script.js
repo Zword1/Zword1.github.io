@@ -9,19 +9,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const letterCountDisplay = document.getElementById("letterCount");
     const cardErrors = document.getElementById("card-errors");
     
-    // Light and Dark themes 
+    // Light and Dark themes
     const themeToggleBtn = document.getElementById("themeToggle");
 
-    themeToggleBtn.addEventListener("click", toggleTheme);
+    const toggleTheme = () => {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "dark" ? "light" : "dark";
 
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
     };
 
-    // Save Theme Preferences
+    themeToggleBtn.addEventListener("click", toggleTheme);
+
+    // Load saved theme
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
-    document.documentElement.setAttribute("data-theme", savedTheme);
+        document.documentElement.setAttribute("data-theme", savedTheme);
     }
 
     
