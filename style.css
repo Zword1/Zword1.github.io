@@ -155,7 +155,8 @@ input:focus, textarea:focus {
     margin: 1rem 0;
     font-size: 1.3rem;
     color: #2e7d32;
-    background-color: #eafaf1;
+    /*background-color: #eafaf1;*/
+    background-color: var(--muted-bg);
     padding: 10px;
     border-radius: 8px;
     font-weight: bold;
