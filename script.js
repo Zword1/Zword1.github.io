@@ -8,11 +8,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailInput = document.getElementById("email");
     const letterCountDisplay = document.getElementById("letterCount");
     const cardErrors = document.getElementById("card-errors");
+    
+    // Light and Dark themes 
+    const toggleTheme = () => {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+    };
 
     let stripe = Stripe("your-publishable-key");
     let elements = stripe.elements();
     let card = elements.create("card");
     card.mount("#card-element");
+
+    // Save Theme Preferences
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    }
 
 
     // Show payment form
