@@ -18,17 +18,17 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("theme", next);
     };
 
-    let stripe = Stripe("your-publishable-key");
-    let elements = stripe.elements();
-    let card = elements.create("card");
-    card.mount("#card-element");
-
     // Save Theme Preferences
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
     document.documentElement.setAttribute("data-theme", savedTheme);
     }
 
+    
+    let stripe = Stripe("your-publishable-key");
+    let elements = stripe.elements();
+    let card = elements.create("card");
+    card.mount("#card-element");
 
     // Show payment form
     startButton.addEventListener("click", () => {
