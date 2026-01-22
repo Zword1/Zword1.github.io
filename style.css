@@ -9,24 +9,29 @@ html {
     box-sizing: inherit;
 }
 
+/* Light mode (defult) */
+:root {
+  --bg-color: linear-gradient(180deg, #e8f6ef, #a9dfbf);
+  --text-color: #333;
+}
+
+/* dark mode */
+[data-theme="dark"] {
+  --bg-color: #111111;
+  --text-color: #eeeeee;
+}
+
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
+    background: var(--bg-color);
+    color: var(--text-color);
+    /*
     color: #333;
-    background: linear-gradient(180deg, #e8f6ef, #a9dfbf);
-}
-
-/* dark mode */
-body {
-  background: white;
-  color: black;
-}
-
-body.dark {
-  background: #121212;
-  color: #f5f5f5;
+    background: linear-gradient(180deg, #e8f6ef, #a9dfbf);*/
 }
 
 
