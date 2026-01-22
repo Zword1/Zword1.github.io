@@ -38,6 +38,11 @@ body {
     background: linear-gradient(180deg, #e8f6ef, #a9dfbf);*/
 }
 
+body, 
+#payment-container, 
+.info-section {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
 .hero {
     position: relative;
