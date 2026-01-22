@@ -13,12 +13,16 @@ html {
 :root {
   --bg-color: linear-gradient(180deg, #e8f6ef, #a9dfbf);
   --text-color: #333;
+  --surface-color: #ffffff;
+  --muted-bg: #f9f9f9;
 }
 
 /* dark mode */
 [data-theme="dark"] {
   --bg-color: #111111;
   --text-color: #eeeeee;
+  --surface-color: #1e1e1e;
+  --muted-bg: #222;
 }
 
 
@@ -110,7 +114,8 @@ button:hover {
 #payment-container {
     display: none;
     margin: 2rem auto;
-    background: white;
+    background: var(--surface-color);
+    /*background: white;*/
     padding: 2rem;
     width: 90%;
     max-width: 500px;
@@ -122,7 +127,8 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #333;
+    color: var(--text-color);
+    /*color: #333;*/
 }
 
 input, textarea {
@@ -159,7 +165,8 @@ input:focus, textarea:focus {
 /* Info Section */
 .info-section {
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--muted-bg);
+    /*background-color: #f9f9f9;*/
     text-align: left;
     margin: 2rem auto;
     border-radius: 10px;
@@ -169,8 +176,10 @@ input:focus, textarea:focus {
 
 /* Footer */
 footer {
-    background: #333;
-    color: white;
+    /*background: #333;*/
+    background: var(--surface-color);
+    color: var(--text-color);
+    /*color: white;*/
     padding: 20px;
     margin-top: 30px;
 }
