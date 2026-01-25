@@ -13,13 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeToggleBtn = document.getElementById("themeToggle");
 
     const toggleTheme = () => {
-        const current = document.documentElement.getAttribute("data-theme") || "Light";
-        const next = current === "dark" ? "light" : "dark";
+    const current = document.documentElement.getAttribute("data-theme") || "light";
+    const next = current === "dark" ? "light" : "dark";
 
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
-    };
-
+       
     // Update icon
     themeToggleBtn.textContent = next === "dark" ? "☀️" : "🌙";
     };
@@ -27,15 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
     themeToggleBtn.addEventListener("click", toggleTheme);
 
     // Load saved theme
-    const savedTheme = localStorage.getItem("theme") || "Light";
-    if (savedTheme) {
-        document.documentElement.setAttribute("data-theme", savedTheme);
-    }
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
 
     // Set correct icon on load
     themeToggleBtn.textContent = savedTheme === "dark" ? "☀️" : "🌙";
 
-    
     let stripe = Stripe("your-publishable-key");
     let elements = stripe.elements();
     let card = elements.create("card");
