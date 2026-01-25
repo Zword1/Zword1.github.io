@@ -25,6 +25,12 @@ html {
   --muted-bg: #222;
 }
 
+#themeToggle {
+    font-size: 1.5rem;
+    background: transparent;
+    box-shadow: none;
+}
+
 
 body {
     font-family: 'Roboto', sans-serif;
