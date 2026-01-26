@@ -25,10 +25,6 @@ html {
   --muted-bg: #222;
 }
 
-[data-theme="dark"] #themeToggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
-}
 
 #themeToggle {
     position: fixed;
@@ -81,10 +77,6 @@ body,
     text-align: center;
 }
 
-:root .hero #themeToggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
-}
 
 /* media query to simulate fixed-like effect on large screens */
 @media (min-width: 768px) {
