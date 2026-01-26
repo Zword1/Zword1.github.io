@@ -18,12 +18,15 @@ html {
 }
 
 /* dark mode */
-[data-theme="dark"] #themeToggle:hover {
-    transform: scale(1.1);
+[data-theme="dark"] {
   --bg-color: #111111;
   --text-color: #eeeeee;
   --surface-color: #1e1e1e;
   --muted-bg: #222;
+}
+
+[data-theme="dark"] #themeToggle:hover {
+    transform: scale(1.1);
 }
 
 #themeToggle {
@@ -60,8 +63,7 @@ body,
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.hero #themeToggle:hover {
-    transform: scale(1.1);
+.hero {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -76,6 +78,10 @@ body,
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
     padding: 20px;
     text-align: center;
+}
+
+:root .hero #themeToggle:hover {
+    transform: scale(1.1);
 }
 
 /* media query to simulate fixed-like effect on large screens */
