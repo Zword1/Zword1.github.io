@@ -18,7 +18,8 @@ html {
 }
 
 /* dark mode */
-[data-theme="dark"] {
+[data-theme="dark"] #themeToggle:hover {
+    transform: scale(1.1);
   --bg-color: #111111;
   --text-color: #eeeeee;
   --surface-color: #1e1e1e;
@@ -39,10 +40,6 @@ html {
     transition: transform 0.2s ease;
 }
 
-#themeToggle:hover {
-    transform: scale(1.1);
-    /*box-shadow: 0 0 10px rgba(255,255,255,0.6);*/
-}
 
 
 body {
@@ -63,7 +60,8 @@ body,
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.hero {
+.hero #themeToggle:hover {
+    transform: scale(1.1);
     position: relative;
     width: 100%;
     min-height: 100vh;
