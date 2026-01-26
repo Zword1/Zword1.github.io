@@ -36,7 +36,7 @@ html {
     border: none;
     cursor: pointer;
     z-index: 9999;
-    box-shadow: none !important
+    box-shadow: none !important;
 
     transition: transform 0.2s ease;
 }
