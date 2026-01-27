@@ -199,15 +199,15 @@ input:focus, textarea:focus {
 }
 
 /* Footer */
-/*footer {
-    /*background: #333;
-    background: var(--surface-color);
-    color: var(--text-color);
-    /*color: white;
+footer {
+    background: #333;
+    /*background: var(--surface-color);*/
+    /*color: var(--text-color);*/
+    color: white;
     padding: 20px;
     margin-top: 30px;
 }
-*/
+
 footer p {
     margin: 5px;
     font-size: 0.9rem;
