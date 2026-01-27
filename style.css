@@ -202,7 +202,7 @@ input:focus, textarea:focus {
 footer {
     background: #333;
     /*background: var(--surface-color);*/
-    /*color: var(--text-color);*/
+    color: var(--text-color);
     color: white;
     padding: 20px;
     margin-top: 30px;
