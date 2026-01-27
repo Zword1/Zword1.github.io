@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
+
+    card.update({ style: getStripeStyle() });
        
     // Update icon
     themeToggleBtn.textContent = next === "dark" ? "☀️" : "🌙";
@@ -34,7 +36,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let stripe = Stripe("your-publishable-key");
     let elements = stripe.elements();
-    let card = elements.create("card");
+    const getStripeStyle = () => {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+
+    return {
+        base: {
+            color: isDark ? "#ffffff" : "#000000",
+            fontSize: "16px",
+            "::placeholder": {
+                color: isDark ? "#aaaaaa" : "#888888"
+        },
+            caretColor: isDark ? "#ffffff" : "#000000"
+        },
+        invalid: {
+            color: "#ff5252"
+        }
+    };
+    };
+
+    let card = elements.create("card", { style: getStripeStyle() });
+    card.mount("#card-element");
+
     card.mount("#card-element");
 
     // Show payment form
