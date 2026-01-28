@@ -248,6 +248,12 @@ footer p {
 
 @media (max-width: 900px) {
     #themeToggle {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 900px) {
+    #themeToggle {
         position: fixed;
         top: 12px;
         right: 12px;
