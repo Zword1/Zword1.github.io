@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Script Loaded");
 
+    // Detect system theme on first visit
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    if (!localStorage.getItem("theme")) {
+        document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+    }
+
+    
     const API_BASE = "https://your-secure-api.com/api";
     const startButton = document.getElementById("startGiving");
     const paymentContainer = document.getElementById("payment-container");
