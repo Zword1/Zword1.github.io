@@ -248,14 +248,10 @@ footer p {
 
 @media (max-width: 900px) {
     #themeToggle {
-        position: static;
-        margin-left: auto;
-        margin-right: 20px;
-        margin-top: 15px;
-        align-self: flex-end;
-    }
-
-    .hero {
-        align-items: flex-start;
+        position: fixed;
+        top: 12px;
+        right: 12px;
+        left: auto;
+        bottom: auto;
     }
 }
