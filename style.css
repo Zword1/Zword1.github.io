@@ -246,13 +246,16 @@ footer p {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     #themeToggle {
-        position: static;      /* stops floating */
-        margin-left: auto;    /* pushes it right */
+        position: static;
+        margin-left: auto;
         margin-right: 20px;
         margin-top: 15px;
+        align-self: flex-end;
+    }
 
-        align-self: flex-end; /* fixes flex centering */
+    .hero {
+        align-items: flex-start;
     }
 }
