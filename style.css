@@ -64,16 +64,23 @@ body,
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;
-    background: url('images/GivingGramWebsitePicture.JPG') no-repeat center center;
+    height: 100svh;
+
+    min-height: 100vh;   /* fallback */
+    min-height: 100svh; /* modern mobile fix */
+
+    background-image: url('images/GivingGramWebsitePicture.JPG');
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
-    background-attachment: scroll; /* Changed from fixed for better mobile support */
+
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
     color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 2px 5px rgba(0,0,0,.6);
     padding: 20px;
     text-align: center;
 }
