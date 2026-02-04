@@ -1,3 +1,10 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 /* General Styles */
 html {
     box-sizing: border-box;
@@ -69,6 +76,8 @@ body,
     height: 100vh;
     min-height: 100vh;
 
+    overflow: hidden;
+
     background-image: url('images/GivingGramWebsitePicture.JPG');
     background-repeat: no-repeat;
     background-size: cover;
@@ -85,6 +94,7 @@ body,
     text-shadow: 2px 2px 5px rgba(0,0,0,.6);
     padding: 20px;
     text-align: center;
+
 }
 
 @media (orientation: landscape) {
