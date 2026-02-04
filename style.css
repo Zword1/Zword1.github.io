@@ -95,11 +95,12 @@ body,
 
 
 /* media query to simulate fixed-like effect on large screens */
-@media (min-width: 768px) {
+@media (hover: hover) and (pointer: fine) {
     .hero {
         background-attachment: fixed;
     }
 }
+
 
 .hero h1 {
     position: absolute;
