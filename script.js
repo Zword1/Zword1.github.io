@@ -42,6 +42,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set correct icon on load
     themeToggleBtn.textContent = savedTheme === "dark" ? "☀️" : "🌙";
 
+    // Header measure function
+    const header = document.getElementById("siteHeader");
+
+    function positionThemeToggle() {
+        if (!header || !themeToggleBtn) return;
+
+    const headerHeight = header.offsetHeight;
+
+    themeToggleBtn.style.top = `${headerHeight + 10}px`;
+    }
+
+    // Run once on load
+    positionThemeToggle();
+
+    // Run again on resize / orientation change
+    window.addEventListener("resize", positionThemeToggle);
+
+
     let stripe = Stripe("your-publishable-key");
     let elements = stripe.elements();
     const getStripeStyle = () => {
