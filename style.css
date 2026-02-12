@@ -35,7 +35,7 @@ html {
 
 #themeToggle {
     position: fixed;
-    /*top: 20px;*/
+    top: 80px; /* temporary starting value — JS will override */
     right: 20px;
 
     font-size: 1.5rem;
@@ -47,7 +47,6 @@ html {
 
     transition: top 0.35s ease, transform 0.35s ease;
 }
-
 
 
 body {
