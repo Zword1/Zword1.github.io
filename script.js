@@ -58,8 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const currentTop = startTop - (startTop - endTop) * t;
 
-    themeToggleBtn.style.top = `${currentTop}px`;
-    }
+    //themeToggleBtn.style.top = `${currentTop}px`;
+    //}
 
     // Run once on load
     updateThemeTogglePosition();
