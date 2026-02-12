@@ -42,22 +42,33 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set correct icon on load
     themeToggleBtn.textContent = savedTheme === "dark" ? "☀️" : "🌙";
 
-    // Header measure function
     const header = document.getElementById("siteHeader");
 
-    function positionThemeToggle() {
+    function updateThemeTogglePosition() {
         if (!header || !themeToggleBtn) return;
 
     const headerHeight = header.offsetHeight;
+    const scrollY = window.scrollY;
 
-    themeToggleBtn.style.top = `${headerHeight + 10}px`;
+    const startTop = headerHeight + 10; // below header
+    const endTop = 12; // final top-right position
+    const maxScroll = 120; // scroll distance for full transition
+
+    const t = Math.min(scrollY / maxScroll, 1);
+
+    const currentTop = startTop - (startTop - endTop) * t;
+
+    themeToggleBtn.style.top = `${currentTop}px`;
     }
 
     // Run once on load
-    positionThemeToggle();
+    updateThemeTogglePosition();
 
-    // Run again on resize / orientation change
-    window.addEventListener("resize", positionThemeToggle);
+    // Update on scroll
+    window.addEventListener("scroll", updateThemeTogglePosition);
+
+    // Update on resize
+    window.addEventListener("resize", updateThemeTogglePosition);
 
 
     let stripe = Stripe("your-publishable-key");
