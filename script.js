@@ -47,19 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateThemeTogglePosition() {
         if (!header || !themeToggleBtn) return;
 
-    const headerHeight = header.offsetHeight;
-    const scrollY = window.scrollY;
+        const headerHeight = header.offsetHeight;
+        const scrollY = window.scrollY;
 
-    const startTop = headerHeight + 10; // below header
-    const endTop = 12; // final top-right position
-    const maxScroll = 120; // scroll distance for full transition
+        const startTop = headerHeight + 10; // below header
+        const endTop = 12; // final top-right position
+        const maxScroll = 120; // scroll distance for full transition
 
-    const t = Math.min(scrollY / maxScroll, 1);
+        const t = Math.min(scrollY / maxScroll, 1);
+        const currentTop = startTop - (startTop - endTop) * t;
 
-    const currentTop = startTop - (startTop - endTop) * t;
-
-    //themeToggleBtn.style.top = `${currentTop}px`;
-    //}
+        themeToggleBtn.style.top = `${currentTop}px`;
+    }
 
     // Run once on load
     updateThemeTogglePosition();
