@@ -45,7 +45,7 @@ html {
     z-index: 9999;
     box-shadow: none !important;
 
-    transition: transform 0.2s ease;
+    transition: top 0.35s ease, transform 0.35s ease;
 }
 
 
